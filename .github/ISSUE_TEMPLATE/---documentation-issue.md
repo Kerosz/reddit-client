@@ -2,7 +2,7 @@
 name: "\U0001F4DA Documentation Issue"
 about: Report issues in our documentation or request new additions
 title: "Issue: \U0001F4DA Documentation Issue"
-labels: documentation
+labels: ''
 assignees: ''
 
 ---
