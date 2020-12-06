@@ -1,3 +1,15 @@
+<div align="center">
+
+[![Reddit-Client](./public/images/media.png)](https://github.com/Kerosz/reddit-client)
+
+### Modern, compact.
+
+</div>
+
+This is the main repo codebase of
+[Reddit Client](https://github.com/Kerosz/reddit-client). Every single line of
+code is in this repository.
+
 ## Table of contents
 
 - [Table of contents](#table-of-contents)
@@ -12,15 +24,19 @@
 
 ## Introduction
 
-[![GitHub issues](https://img.shields.io/github/issues/Kerosz/reddit-redesign)](hhttps://github.com/Kerosz/reddit-redesign/issues)
-[![GitHub license](https://img.shields.io/github/license/Kerosz/reddit-redesign)](https://github.com/Kerosz/reddit-redesign)
+[![GitHub issues](https://img.shields.io/github/issues/Kerosz/reddit-client?style=flat-square)](https://github.com/Kerosz/reddit-client/issues)
+[![GitHub license](https://img.shields.io/github/license/Kerosz/reddit-client?style=flat-square)](https://github.com/Kerosz/reddit-client)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square)]()
 
 ### Vision
 
-It is difficult to change and adapt to different trends and designs as a company that impact millions of users. Users need modern changes that improves the usability and experience of their favorite online applications.
+It is difficult to change and adapt to different trends and designs as a company
+that impact millions of users. Users need modern changes that improves the
+usability and experience of their favorite online applications.
 
-**Reddit Client Redesign is a Reddit app concept to tune the experience of the users and greater increase the browsing experience.**
+**Reddit Client Redesign is the unofficial [Reddit](https://www.reddit.com/)
+frontend app concept to tune the experience of the users and greater increase
+the browsing experience.**
 
 ## Codebase
 
@@ -37,21 +53,23 @@ Here is a list of all technologies used:
 ### Folder structure
 
 ```sh
-spectrum/
+reddit-client/
 ├── public     # Public files used on the frontend
 └── src        # Frontend SPA
 
-spectrum/src
+reddit-client/src
 ├── components     # Reusabble parts
 ├── pages          # Application views
 ├── store          # Redux store initialization
 ├── reducers       # Redux reducers declarations
-├── actions        # Redux actions declarations
+└── actions        # Redux actions declarations
 ```
 
 ### Code Style
 
-We run Prettier on-commit, which means you can write code in whatever style you want and it will be automatically formatted according to the common style when you run `git commit`.
+We run Prettier on-commit, which means you can write code in whatever style you
+want and it will be automatically formatted according to the common style when
+you run `git commit`.
 
 ## Setup Process
 
@@ -61,12 +79,15 @@ We run Prettier on-commit, which means you can write code in whatever style you 
 
 ## Acknowledgments
 
-The project was a task given by [Codecademy](https://www.codecademy.com) being a part of their full-stack engineer course path.
+The project is using
+[Reddit JSON Api](https://github.com/reddit-archive/reddit/wiki/JSON)
 
-The goal of the project was to showcase all previews skills and technologies learned:
+The project was a task given by [Codecademy](https://www.codecademy.com) being a
+part of their full-stack engineer course path. The goal of the project was to
+showcase all previews skills and technologies learned until this point on the
+path:
 
-- HTML
-- CSS
+- HTML / CSS
 - JavaScript
 - React
 - Redux
