@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "description": "Reddit Client Redesign is the unofficial Reddit frontend app concept to tune the experience of the users and greater increase the browsing experience.",
   "author": "Andrei C.",
-  "license": "GNU-3",
+  "license": "GPL-3.0-only",
   "main": "index.js",
   "scripts": {
     "start": "react-scripts start",
@@ -21,12 +21,14 @@
     "@reduxjs/toolkit": "^1.5.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-redux": "^7.2.2"
+    "react-redux": "^7.2.2",
+    "react-scripts": "^4.0.1"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
     "eslint": "^7.15.0",
     "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^7.0.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-prettier": "^3.2.0",
@@ -34,8 +36,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "husky": "^4.3.4",
     "lint-staged": "^10.5.3",
-    "prettier": "^2.2.1",
-    "react-scripts": "^4.0.1"
+    "prettier": "^2.2.1"
   },
   "lint-staged": {
     "**/*.+{js|jsx|tx|tsx|json}": [

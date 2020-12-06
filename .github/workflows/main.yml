@@ -2,13 +2,13 @@
 
 name: Netlify Builds
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
-    branches: [ production ]
+    branches: [production]
   pull_request:
-    branches: [ production ]
+    branches: [production]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -24,19 +24,19 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
-        name: "Checkout source code"
-        
+        name: 'Checkout source code'
+
       - name: Setup Node.js environment
         uses: actions/setup-node@v2.1.2
         with:
-          node-version: 14.x
+          node-version: 12.x
 
       # Runs a set of commands using the runners shell
       - name: Builds the app
         run: |
-          yarn install --production
-          yarn build
-          
+          npm install
+          npm run build
+
       - name: Netlify Actions
         uses: nwtgck/actions-netlify@v1.1.11
         with:
@@ -44,5 +44,5 @@ jobs:
           production-branch: production
           deploy-message: '${{ github.event.head_commit.message }}'
         env:
-            NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
