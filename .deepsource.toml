@@ -1,0 +1,13 @@
+version = 1
+
+[[analyzers]]
+name = "javascript"
+enabled = true
+
+  [analyzers.meta]
+  plugins = ["react"]
+  style_guide = "airbnb"
+  environment = [
+    "browser",
+    "jest"
+  ]
