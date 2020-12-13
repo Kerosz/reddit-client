@@ -5,9 +5,11 @@ name = "javascript"
 enabled = true
 
   [analyzers.meta]
-  plugins = ["react"]
-  style_guide = "airbnb"
   environment = [
     "browser",
-    "jest"
+    "jest",
+    "nodejs"
   ]
+  plugins = ["react"]
+  style_guide = "airbnb"
+  dialect = "typescript"
