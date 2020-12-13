@@ -61,8 +61,7 @@ reddit-client/src
 ├── components     # Reusabble parts
 ├── pages          # Application views
 ├── store          # Redux store initialization
-├── reducers       # Redux reducers declarations
-└── actions        # Redux actions declarations
+└── slices         # Redux reducers and actions declaration
 ```
 
 ### Code Style
