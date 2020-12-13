@@ -10,9 +10,15 @@ import lightTheme from './light';
 declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
     clrAccent: React.CSSProperties['color'];
+    clrHover: {
+      primary: React.CSSProperties['color'];
+    };
   }
   interface PaletteOptions {
     clrAccent: React.CSSProperties['color'];
+    clrHover: {
+      primary: React.CSSProperties['color'];
+    };
   }
 }
 

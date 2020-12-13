@@ -13,20 +13,19 @@ const searchStyles = (theme: Theme) =>
   createStyles({
     search: {
       position: 'relative',
+      color: theme.palette.text.secondary,
       borderRadius: theme.shape.borderRadius,
-      backgroundColor: fade(theme.palette.common.white, 0.15),
+      border: `1px solid ${fade(theme.palette.action.selected, 0.04)}`,
+      backgroundColor: fade(theme.palette.action.hover, 0.04),
       '&:hover': {
-        backgroundColor: fade(theme.palette.common.white, 0.25),
+        borderColor: theme.palette.clrHover.primary,
       },
-      marginLeft: 0,
+      marginLeft: theme.spacing(1),
+      maxWidth: '600px',
       width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        marginLeft: theme.spacing(1),
-        width: 'auto',
-      },
     },
     searchIcon: {
-      padding: theme.spacing(0, 2),
+      padding: theme.spacing(0, 1),
       height: '100%',
       position: 'absolute',
       pointerEvents: 'none',
@@ -36,19 +35,15 @@ const searchStyles = (theme: Theme) =>
     },
     inputRoot: {
       color: 'inherit',
+      display: 'block',
     },
     inputInput: {
       padding: theme.spacing(1, 1, 1, 0),
       // vertical padding + font size from searchIcon
-      paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+      paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
       transition: theme.transitions.create('width'),
+      maxWidth: '525px',
       width: '100%',
-      [theme.breakpoints.up('sm')]: {
-        width: '12ch',
-        '&:focus': {
-          width: '20ch',
-        },
-      },
     },
   });
 
