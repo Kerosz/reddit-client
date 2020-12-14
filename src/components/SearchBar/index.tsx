@@ -19,7 +19,7 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
       <InputBase
         value={term}
         onChange={handleSearch}
-        placeholder="Search…"
+        placeholder="Search"
         classes={{
           root: classes.inputRoot,
           input: classes.inputInput,

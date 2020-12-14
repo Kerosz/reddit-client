@@ -1,6 +1,6 @@
 {
   "name": "reddit-client",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "description": "Reddit Client Redesign is the unofficial Reddit frontend app concept to tune the experience of the users and greater increase the browsing experience.",
   "author": "Andrei C.",
   "license": "GPL-3.0-only",
@@ -21,6 +21,7 @@
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",
     "@reduxjs/toolkit": "^1.5.0",
+    "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-redux": "^7.2.2",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@types/jest": "^26.0.19",
+    "@types/lodash": "^4.14.165",
     "@types/material-ui": "^0.21.8",
     "@types/node": "^14.14.13",
     "@types/react": "^17.0.0",
