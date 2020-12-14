@@ -4,9 +4,12 @@ const lightTheme = createMuiTheme({
   palette: {
     type: 'light',
     background: {
-      default: '#DAE0E6',
+      default: '#EEF0F2',
     },
     clrAccent: '#FFFFFF',
+    clrHover: {
+      primary: '#1976d2',
+    },
   },
 });
 

@@ -7,6 +7,9 @@ const darkTheme = createMuiTheme({
       default: '#030303',
     },
     clrAccent: '#161B22',
+    clrHover: {
+      primary: '#fafafa',
+    },
   },
 });
 

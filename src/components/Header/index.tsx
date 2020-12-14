@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { modeSelector, updateMode } from '../../slices/themeSlice';
 import Branding from './branding';
 import SearchBar from '../SearchBar';
+import UserAvatar from '../UserAvatar';
 import headerStyles, { StyleProps } from './header.styles';
 
 type ScrollProps = {
@@ -41,23 +42,24 @@ const Header: React.FC<StyleProps> = ({ classes }) => {
   return (
     <ScrollEffect>
       <AppBar className={classes.navbar} position="static">
+        <Branding theme={mode} />
+        <SearchBar />
         <div className={classes.group}>
-          <Branding theme={mode} />
-          <SearchBar />
+          <UserAvatar name="Andrei Chirila" email="andrei.chirila@gmail.com" />
+          <IconButton
+            aria-label="switch theme mode"
+            aria-controls="switch-appbar"
+            aria-haspopup="false"
+            onClick={handleModeSwitch}
+            color="inherit"
+          >
+            {mode === 'light' ? (
+              <Brightness4Icon htmlColor="#1c1c1c" />
+            ) : (
+              <Brightness7Icon />
+            )}
+          </IconButton>
         </div>
-        <IconButton
-          aria-label="switch theme mode"
-          aria-controls="switch-appbar"
-          aria-haspopup="false"
-          onClick={handleModeSwitch}
-          color="inherit"
-        >
-          {mode === 'light' ? (
-            <Brightness4Icon htmlColor="#1c1c1c" />
-          ) : (
-            <Brightness7Icon />
-          )}
-        </IconButton>
       </AppBar>
     </ScrollEffect>
   );

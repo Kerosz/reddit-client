@@ -10,6 +10,7 @@ export type StyleProps = {
 const headerStyles = (theme: Theme) =>
   createStyles({
     navbar: {
+      height: '55px',
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
