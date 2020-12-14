@@ -1,26 +1,33 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { withStyles, createStyles } from '@material-ui/core/styles';
+import { withStyles, createStyles, Theme } from '@material-ui/core/styles';
 
 export type Props = {
   classes: {
     branding: string;
+    text: string;
   };
   theme: string;
 };
 
-const brandStyles = createStyles({
-  branding: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    width: 'fit-content',
-    maxWidth: '95px',
+const brandStyles = (theme: Theme) =>
+  createStyles({
+    branding: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      width: 'fit-content',
+      maxWidth: '95px',
 
-    '& svg:first-of-type': {
-      marginRight: 8,
+      '& svg:first-of-type': {
+        marginRight: 8,
+      },
     },
-  },
-});
+    text: {
+      [theme.breakpoints.down('xs')]: {
+        display: 'none',
+      },
+    },
+  });
 
 const Branding = ({ theme, classes }: Props) => {
   const color = theme === 'light' ? '#1c1c1c' : '#ffffff';
@@ -46,6 +53,7 @@ const Branding = ({ theme, classes }: Props) => {
         xmlns="http://www.w3.org/2000/svg"
         width="57"
         height="18"
+        className={classes.text}
       >
         <g fill={color}>
           <path

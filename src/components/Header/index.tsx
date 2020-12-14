@@ -41,7 +41,7 @@ const Header: React.FC<StyleProps> = ({ classes }) => {
 
   return (
     <ScrollEffect>
-      <AppBar className={classes.navbar} position="static">
+      <AppBar className={classes.navbar}>
         <Branding theme={mode} />
         <SearchBar />
         <div className={classes.group}>
