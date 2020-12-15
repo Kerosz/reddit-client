@@ -1,5 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { withStyles, createStyles, Theme } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 export type Props = {
   classes: {
@@ -33,7 +34,7 @@ const Branding = ({ theme, classes }: Props) => {
   const color = theme === 'light' ? '#1c1c1c' : '#ffffff';
 
   return (
-    <a className={classes.branding} aria-label="Home" href="/">
+    <Link className={classes.branding} aria-label="Home" to="/">
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 20 20"
@@ -83,7 +84,7 @@ const Branding = ({ theme, classes }: Props) => {
           />
         </g>
       </svg>
-    </a>
+    </Link>
   );
 };
 

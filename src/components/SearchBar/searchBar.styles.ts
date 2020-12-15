@@ -21,7 +21,7 @@ const searchStyles = (theme: Theme) =>
         borderColor: theme.palette.clrHover.primary,
       },
       marginLeft: theme.spacing(1),
-      maxWidth: '600px',
+      maxWidth: '650px',
       width: '100%',
     },
     searchIcon: {
@@ -42,7 +42,7 @@ const searchStyles = (theme: Theme) =>
       // vertical padding + font size from searchIcon
       paddingLeft: `calc(1em + ${theme.spacing(3)}px)`,
       transition: theme.transitions.create('width'),
-      maxWidth: '525px',
+      maxWidth: '600px',
       width: '100%',
     },
   });
