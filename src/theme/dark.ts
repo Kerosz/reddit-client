@@ -4,7 +4,8 @@ const darkTheme = createMuiTheme({
   palette: {
     type: 'dark',
     background: {
-      default: '#030303',
+      default: '#11151c',
+      paper: '#21262D',
     },
     clrAccent: '#161B22',
     clrHover: {

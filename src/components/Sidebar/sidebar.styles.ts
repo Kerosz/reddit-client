@@ -3,9 +3,12 @@ import { createStyles, Theme } from '@material-ui/core/styles';
 export type StyleProps = {
   classes: {
     sidebar: string;
+    listText: string;
     card: string;
     title: string;
     ad: string;
+    listItem: string;
+    link: string;
   };
 };
 
@@ -16,6 +19,9 @@ const sidebarStyles = (theme: Theme) =>
       maxWidth: 300,
       backgroundColor: theme.palette.background.default,
       paddingRight: 3,
+    },
+    listText: {
+      fontWeight: 500,
     },
     card: {
       maxWidth: 'inherit',
@@ -36,6 +42,19 @@ const sidebarStyles = (theme: Theme) =>
     ad: {
       marginTop: 5,
       width: '100%',
+    },
+    listItem: {
+      '&:hover': {
+        background: 'none',
+        '& .MuiTypography-root': { color: theme.palette.warning.main },
+        '& .MuiListItemIcon-root > svg': {
+          color: theme.palette.warning.main,
+        },
+      },
+    },
+    link: {
+      color: theme.palette.text.primary,
+      textDecoration: 'none',
     },
   });
 
