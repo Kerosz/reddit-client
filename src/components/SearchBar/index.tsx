@@ -17,6 +17,7 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
         <SearchRoundedIcon />
       </div>
       <InputBase
+        type="text"
         value={term}
         onChange={handleSearch}
         placeholder="Search"
@@ -24,7 +25,7 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
-        inputProps={{ 'aria-label': 'search' }}
+        inputProps={{ 'aria-label': 'Search bar' }}
       />
     </div>
   );
