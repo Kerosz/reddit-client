@@ -1,3 +1,5 @@
+/* eslint-disable global-require */
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
 import rootReducer, { RootState } from '../reducers/rootReducer';
 
@@ -7,12 +9,18 @@ const store = configureStore({
 });
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('../reducers/rootReducer', () => {
-    store.replaceReducer(rootReducer);
+  module.hot.accept('./rootReducer', () => {
+    const newRootReducer = require('./rootReducer').default;
+    store.replaceReducer(newRootReducer);
   });
 }
 
 export type AppDispatch = typeof store.dispatch;
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
 
 export default store;

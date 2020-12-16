@@ -3,7 +3,7 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
-import { modeSelector } from '../slices/themeSlice';
+import { modeSelector } from '../features/theme/themeSlice';
 import darkTheme from './dark';
 import lightTheme from './light';
 

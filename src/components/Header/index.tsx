@@ -6,7 +6,8 @@ import IconButton from '@material-ui/core/IconButton';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import { useSelector, useDispatch } from 'react-redux';
-import { modeSelector, updateMode } from '../../slices/themeSlice';
+import { updateMode } from '../../features/theme/themeSlice';
+import { RootState } from '../../reducers/rootReducer';
 import Branding from './branding';
 import SearchBar from '../SearchBar';
 import UserAvatar from '../UserAvatar';
@@ -28,7 +29,7 @@ const ScrollEffect: React.FC<ScrollProps> = ({ children }) => {
 };
 
 const Header: React.FC<StyleProps> = ({ classes }) => {
-  const mode = useSelector(modeSelector);
+  const { mode } = useSelector((state: RootState) => state.theme);
   const dispatch = useDispatch();
 
   const handleModeSwitch = () => {

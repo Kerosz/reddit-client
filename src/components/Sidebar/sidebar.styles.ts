@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createStyles, Theme } from '@material-ui/core/styles';
 
 export type StyleProps = {
@@ -44,9 +45,12 @@ const sidebarStyles = (theme: Theme) =>
       width: '100%',
     },
     listItem: {
+      fontWeight: 500,
       '&:hover': {
         background: 'none',
-        '& .MuiTypography-root': { color: theme.palette.warning.main },
+        '& .MuiTypography-root': {
+          color: theme.palette.warning.main,
+        },
         '& .MuiListItemIcon-root > svg': {
           color: theme.palette.warning.main,
         },

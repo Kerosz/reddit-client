@@ -24,10 +24,24 @@ type Category = {
   icon: JSX.Element;
 };
 
-const Sidebar: React.FC<{ result: any } & StyleProps> = ({
-  result,
-  classes,
-}) => {
+type ListProps = {
+  data: {
+    id: string;
+    subreddit: string;
+    thumbnail: string;
+    subreddit_subscribers: string;
+  };
+};
+
+type ResultProps = {
+  result?: {
+    data: {
+      children: [];
+    };
+  };
+};
+
+const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
   const categories: Category[] = [
     { name: 'all', path: '/', icon: <DynamicFeedIcon /> },
     { name: 'hot', path: '/hot', icon: <WhatshotIcon /> },
@@ -37,8 +51,11 @@ const Sidebar: React.FC<{ result: any } & StyleProps> = ({
   ];
 
   return (
-    <div className={classes.sidebar}>
-      <List component="nav" aria-label="main mailbox folders">
+    <aside
+      className={classes.sidebar}
+      aria-label="Extra content about categories and ads"
+    >
+      <List aria-label="Reddit category list">
         {categories.map(
           (category: Category): JSX.Element => (
             <Link
@@ -62,7 +79,7 @@ const Sidebar: React.FC<{ result: any } & StyleProps> = ({
         <Divider />
         <List>
           {result?.data.children.slice(0, 5).map(
-            ({ data }: any): JSX.Element => {
+            ({ data }: ListProps): JSX.Element => {
               const subCount = String(data.subreddit_subscribers).replace(
                 /(\d)(?=(\d\d\d)+(?!\d))/g,
                 '$1.',
@@ -98,7 +115,7 @@ const Sidebar: React.FC<{ result: any } & StyleProps> = ({
           className={classes.ad}
         />
       </div>
-    </div>
+    </aside>
   );
 };
 

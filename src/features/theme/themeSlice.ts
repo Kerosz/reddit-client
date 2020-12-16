@@ -1,22 +1,21 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-export type ThemeState = {
+type ThemeState = {
   mode: string;
 };
 
+const initialState: ThemeState = { mode: 'light' };
+
 const themeSlice = createSlice({
   name: 'theme',
-  initialState: { mode: 'light' } as ThemeState,
+  initialState,
   reducers: {
-    updateMode(state: ThemeState, { payload }: PayloadAction<string>) {
-      state.mode = payload;
+    updateMode(state: ThemeState, action: PayloadAction<string>) {
+      state.mode = action.payload;
     },
   },
 });
-
-export const modeSelector = (state: { theme: ThemeState }): string =>
-  state.theme.mode;
 
 export const { updateMode } = themeSlice.actions;
 
