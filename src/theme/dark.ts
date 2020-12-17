@@ -9,7 +9,7 @@ const darkTheme = createMuiTheme({
     },
     clrAccent: '#161B22',
     clrHover: {
-      primary: '#fafafa',
+      main: '#fafafa',
     },
   },
 });

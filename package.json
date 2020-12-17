@@ -61,7 +61,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
-    "lint:precommit": "lint-staged"
+    "lint:precommit": "lint-staged",
+    "test:prepush": "jest --findRelatedTests"
   },
   "lint-staged": {
     "**/*.+{js|jsx|tx|tsx|json}": [
@@ -72,7 +73,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn lint:precommit"
+      "pre-commit": "yarn lint:precommit",
+      "pre-push": "yarn test:prepush"
     }
   },
   "eslintConfig": {
