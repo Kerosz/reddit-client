@@ -9,7 +9,6 @@ import store from './store/store';
 
 const render = () => {
   const App = require('./app').default;
-
   ReactDOM.render(
     <Provider store={store}>
       <Theme>

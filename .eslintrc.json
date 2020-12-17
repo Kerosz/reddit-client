@@ -33,6 +33,7 @@
     "@typescript-eslint/ban-types": 0,
     "@typescript-eslint/no-unused-vars": 0,
     "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
     "no-console": ["warn", { "allow": ["warn", "error"] }],
     "no-unused-vars": 1,
     "no-useless-escape": 1,
@@ -42,8 +43,11 @@
     "react/no-unescaped-entities": "warn",
     "react/no-string-refs": "warn",
     "react/jsx-no-target-blank": "warn",
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-one-expression-per-line": 0,
     "react/prop-types": 0,
-    "import/extensions": 0
+    "import/extensions": 0,
+    "import/prefer-default-export": 0
   },
   "settings": {
     "import/resolver": {

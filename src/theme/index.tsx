@@ -3,7 +3,7 @@ import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { useSelector } from 'react-redux';
-import { modeSelector } from '../features/theme/themeSlice';
+import { RootState } from '../reducers/rootReducer';
 import darkTheme from './dark';
 import lightTheme from './light';
 
@@ -27,7 +27,7 @@ type Props = {
 };
 
 const Theme: React.FC<Props> = ({ children }) => {
-  const mode = useSelector(modeSelector);
+  const { mode } = useSelector((state: RootState) => state.theme);
   const theme = mode === 'light' ? lightTheme : darkTheme;
 
   return (
