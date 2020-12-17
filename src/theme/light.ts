@@ -8,7 +8,7 @@ const lightTheme = createMuiTheme({
     },
     clrAccent: '#FFFFFF',
     clrHover: {
-      primary: '#1976d2',
+      main: '#1976d2',
     },
   },
 });

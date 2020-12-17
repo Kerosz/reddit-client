@@ -1,9 +1,17 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import PostCard, { ListProps } from './index';
 
-const renderWithProps = (Component: React.FC | any, props: ListProps) =>
-  render(<Component {...props} />);
+const renderWithMemoryAndProps = (
+  Component: React.FC | any,
+  props: ListProps,
+) =>
+  render(
+    <MemoryRouter>
+      <Component {...props} />
+    </MemoryRouter>,
+  );
 
 describe('Post card component', () => {
   beforeEach(() => {
@@ -13,12 +21,13 @@ describe('Post card component', () => {
         thumbnail: 'http://reddit.com/test-image.jpg',
         author: 'newyorktimes',
         selftext: 'Peole are holding hands and singing together',
-        title: 'The world is a nice place',
+        title: 'The world is nice',
         url: 'http://reddit.com/test-image.jpg',
+        permalink: '/r/subreddit/comments/ke6j9j/the_world_is_nice/',
         ups: '91.1kk',
       },
     };
-    renderWithProps(PostCard, postProps);
+    renderWithMemoryAndProps(PostCard, postProps);
   });
   afterEach(() => cleanup);
 
@@ -33,10 +42,10 @@ describe('Post card component', () => {
       const title = screen.getByTestId('title');
       const description = screen.getByTestId('description');
 
-      expect(subreddit.textContent).toBe('r/news');
-      expect(author.textContent).toBe('Posted by u/newyorktimes');
-      expect(title.textContent).toBe('The world is a nice place');
-      expect(description.textContent).toBe(
+      expect(subreddit).toHaveTextContent('r/news');
+      expect(author).toHaveTextContent('Posted by u/newyorktimes');
+      expect(title).toHaveTextContent('The world is nice');
+      expect(description).toHaveTextContent(
         'Peole are holding hands and singing together',
       );
     });

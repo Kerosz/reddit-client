@@ -25,8 +25,15 @@ const postCardStyles = (theme: Theme) =>
       minWidth: 240,
       backgroundColor: theme.palette.background.paper,
       border: `1px solid ${fade(theme.palette.action.disabled, 0.2)}`,
-      borderRadius: 1,
+      borderRadius: 2,
       marginBottom: 7,
+      '& a': {
+        color: 'inherit',
+        textDecoration: 'none',
+      },
+      '&:hover': {
+        borderColor: theme.palette.primary.main,
+      },
     },
     post: {
       width: '100%',
@@ -38,8 +45,9 @@ const postCardStyles = (theme: Theme) =>
       alignItems: 'center',
       width: 75,
       height: 'inherit',
-      backgroundColor: theme.palette.action.selected,
       borderLeft: `1px solid ${fade(theme.palette.action.disabled, 0.2)}`,
+      backgroundColor: theme.palette.action.selected,
+      cursor: 'default',
       '& > h2': {
         fontSize: 20,
       },
