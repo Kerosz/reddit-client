@@ -1,6 +1,5 @@
 import { withStyles, createStyles, Theme } from '@material-ui/core/styles';
 import React from 'react';
-
 import { Link } from 'react-router-dom';
 
 export type Props = {

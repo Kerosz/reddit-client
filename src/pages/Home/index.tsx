@@ -2,7 +2,7 @@ import React from 'react';
 import useSWR from 'swr';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
-import { Footer, Header, Sidebar } from '../../components';
+import { Footer, Header, Sidebar, PostCard } from '../../components';
 import homeStyles, { StyleProps } from './home.styles';
 
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
@@ -26,6 +26,11 @@ const Home: React.FC<StyleProps> = ({ classes }) => {
       <Container maxWidth="lg">
         <main className={classes.main}>
           <Sidebar result={result} />
+          <div className={classes.content}>
+            {result?.data.children.map(({ data }: any) => {
+              return <PostCard data={data} key={data.id} />;
+            })}
+          </div>
         </main>
         <Footer />
       </Container>

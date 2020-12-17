@@ -20,6 +20,9 @@ const sidebarStyles = (theme: Theme) =>
       maxWidth: 300,
       backgroundColor: theme.palette.background.default,
       paddingRight: 3,
+      [theme.breakpoints.down('sm')]: {
+        display: 'none',
+      },
     },
     listText: {
       fontWeight: 500,
