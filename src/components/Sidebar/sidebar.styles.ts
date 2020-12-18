@@ -18,10 +18,14 @@ const sidebarStyles = (theme: Theme) =>
     sidebar: {
       width: '100%',
       maxWidth: 300,
+      minWidth: 300,
       backgroundColor: theme.palette.background.default,
       paddingRight: 3,
       [theme.breakpoints.down('sm')]: {
         display: 'none',
+      },
+      '& > ul': {
+        marginBottom: 20,
       },
     },
     listText: {
@@ -33,6 +37,9 @@ const sidebarStyles = (theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       padding: '10px 10px 0',
       borderRadius: 5,
+      '&:first-of-type': {
+        marginTop: 0,
+      },
     },
     title: {
       fontSize: 14,

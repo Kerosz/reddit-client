@@ -1,7 +1,7 @@
 /* eslint-disable global-require */
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import rootReducer, { RootState } from '../reducers/rootReducer';
+import rootReducer, { RootState } from './rootReducer';
 
 const store = configureStore({
   reducer: rootReducer,
@@ -9,8 +9,8 @@ const store = configureStore({
 });
 
 if (process.env.NODE_ENV === 'development' && module.hot) {
-  module.hot.accept('../reducers/rootReducer', () => {
-    const newRootReducer = require('../reducers/rootReducer').default;
+  module.hot.accept('./rootReducer', () => {
+    const newRootReducer = require('./rootReducer').default;
     store.replaceReducer(newRootReducer);
   });
 }

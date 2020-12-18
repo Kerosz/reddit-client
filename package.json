@@ -1,6 +1,6 @@
 {
   "name": "reddit-client",
-  "version": "0.1.11",
+  "version": "0.1.14",
   "description": "Reddit Client Redesign is the unofficial Reddit frontend app concept to tune the experience of the users and greater increase the browsing experience.",
   "author": "Andrei C.",
   "license": "GPL-3.0-only",
@@ -62,7 +62,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:precommit": "lint-staged",
-    "test:prepush": "jest --findRelatedTests"
+    "test:prepush": ""
   },
   "lint-staged": {
     "**/*.+{js|jsx|tx|tsx|json}": [
@@ -74,7 +74,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn lint:precommit",
-      "pre-push": "yarn test:prepush"
+      "pre-push": "yarn test"
     }
   },
   "eslintConfig": {
