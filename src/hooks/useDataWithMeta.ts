@@ -3,7 +3,6 @@ import useSWR from 'swr';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const useDataWithMeta = (url: string) => {
-  // const query = await fetcher(url);
   const { data, error } = useSWR(url, fetcher, { dedupingInterval: 5000 });
 
   return {

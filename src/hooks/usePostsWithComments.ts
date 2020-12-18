@@ -3,7 +3,6 @@ import useSWR from 'swr';
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const usePostsWithComments = (url: string) => {
-  // const query = await fetcher(url);
   const { data, error } = useSWR(url, fetcher, { dedupingInterval: 3000 });
 
   const post = data && data[0]?.data.children[0].data;

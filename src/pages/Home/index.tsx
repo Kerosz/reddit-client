@@ -1,18 +1,23 @@
 import React from 'react';
 import Container from '@material-ui/core/Container';
+import { useParams } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import { Footer, Header, PostCard, Sidebar } from '../../components';
 import homeStyles, { StyleProps } from './home.styles';
 import useDataWithMeta from '../../hooks/useDataWithMeta';
 
+type ParamsProps = {
+  category: string;
+};
+
 const Home: React.FC<StyleProps> = ({ classes }) => {
-  const path = window.location.pathname;
+  // const path = window.location.pathname;
+  const { category } = useParams<ParamsProps>();
 
   const { result: postsData } = useDataWithMeta(
-    `https://www.reddit.com${path}.json`,
-  );
-  const { result: subredditsData } = useDataWithMeta(
-    `https://www.reddit.com/subreddits/.json`,
+    category
+      ? `https://www.reddit.com/${category}/.json`
+      : 'https://www.reddit.com/.json',
   );
 
   return (
@@ -20,7 +25,7 @@ const Home: React.FC<StyleProps> = ({ classes }) => {
       <Header />
       <Container maxWidth="lg">
         <main className={classes.main}>
-          <Sidebar result={subredditsData} />
+          <Sidebar />
           <div className={classes.content}>
             {postsData?.map((post: any) => (
               <PostCard data={post} key={post.id} />
