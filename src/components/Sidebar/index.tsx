@@ -17,6 +17,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import { capitalize } from 'lodash';
 import sidebarStyles, { StyleProps } from './sidebar.styles';
+import useDataWithMeta from '../../hooks/useDataWithMeta';
 
 type Category = {
   name: string;
@@ -24,31 +25,80 @@ type Category = {
   icon: JSX.Element;
 };
 
-type ListProps = {
-  data: {
-    id: string;
-    subreddit: string;
-    thumbnail: string;
-    subreddit_subscribers: string;
-  };
+type Props = {
+  type?: 'main' | 'post' | null;
 };
 
-type ResultProps = {
-  result?: {
-    data: {
-      children: [];
-    };
-  };
-};
+const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
+  const subredditUrl = `https://www.reddit.com/subreddits/.json`;
 
-const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
   const categories: Category[] = [
     { name: 'all', path: '/', icon: <DynamicFeedIcon /> },
-    { name: 'hot', path: '/hot', icon: <WhatshotIcon /> },
-    { name: 'new', path: '/new', icon: <DescriptionIcon /> },
-    { name: 'rising', path: '/rising', icon: <TrendingUpIcon /> },
-    { name: 'top', path: '/top', icon: <EqualizerIcon /> },
+    { name: 'hot', path: '/filter/hot', icon: <WhatshotIcon /> },
+    { name: 'new', path: '/filter/new', icon: <DescriptionIcon /> },
+    { name: 'rising', path: '/filter/rising', icon: <TrendingUpIcon /> },
+    { name: 'top', path: '/filter/top', icon: <EqualizerIcon /> },
   ];
+
+  const { result: subreddits } = useDataWithMeta(subredditUrl);
+
+  if (type === 'post') {
+    return (
+      <aside
+        className={classes.sidebar}
+        aria-label="Extra content about categories and ads"
+      >
+        <div className={classes.card}>
+          <h3 className={classes.title}>Featured Subreddits</h3>
+          <Divider />
+          <List>
+            {subreddits?.slice(0, 5).map(
+              (data: any): JSX.Element => {
+                const subCount = String(data.subscribers).replace(
+                  /(\d)(?=(\d\d\d)+(?!\d))/g,
+                  '$1.',
+                );
+
+                return (
+                  <ListItem
+                    component={Link}
+                    button
+                    key={data.id}
+                    to={`/subreddit/r/${data.display_name}`}
+                  >
+                    <ListItemAvatar>
+                      <Avatar alt={data.display_name} src={data.icon_img} />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={`r/${data.display_name}`}
+                      secondary={`${subCount} subscribers`}
+                    />
+                  </ListItem>
+                );
+              },
+            )}
+          </List>
+          <Divider />
+          <CardActions>
+            <Button component={Link} to="/subreddits" size="small">
+              All Subreddits
+            </Button>
+            <Button size="small">Near You</Button>
+          </CardActions>
+        </div>
+
+        <div className={classes.card}>
+          <h3 className={classes.title}>Addvertisement</h3>
+          <Divider />
+          <img
+            src={`${process.env.PUBLIC_URL}/images/ad.png`}
+            alt="Burger addvertisement"
+            className={classes.ad}
+          />
+        </div>
+      </aside>
+    );
+  }
 
   return (
     <aside
@@ -78,21 +128,26 @@ const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
         <h3 className={classes.title}>Featured Subreddits</h3>
         <Divider />
         <List>
-          {result?.data.children.slice(0, 5).map(
-            ({ data }: ListProps): JSX.Element => {
-              const subCount = String(data.subreddit_subscribers).replace(
+          {subreddits?.slice(0, 5).map(
+            (data: any): JSX.Element => {
+              const subCount = String(data.subscribers).replace(
                 /(\d)(?=(\d\d\d)+(?!\d))/g,
                 '$1.',
               );
 
               return (
-                <ListItem button key={data.id}>
+                <ListItem
+                  component={Link}
+                  button
+                  key={data.id}
+                  to={`/subreddit/r/${data.display_name}`}
+                >
                   <ListItemAvatar>
-                    <Avatar alt={data.subreddit} src={data.thumbnail} />
+                    <Avatar alt={data.display_name} src={data.icon_img} />
                   </ListItemAvatar>
                   <ListItemText
-                    primary={`r/${data.subreddit}`}
-                    secondary={`Subscribers: ${subCount}`}
+                    primary={`r/${data.display_name}`}
+                    secondary={`${subCount} subscribers`}
                   />
                 </ListItem>
               );
@@ -101,7 +156,9 @@ const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
         </List>
         <Divider />
         <CardActions>
-          <Button size="small">All Categories</Button>
+          <Button component={Link} to="/subreddits" size="small">
+            All Subreddits
+          </Button>
           <Button size="small">Near You</Button>
         </CardActions>
       </div>

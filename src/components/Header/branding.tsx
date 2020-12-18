@@ -31,7 +31,7 @@ const brandStyles = (theme: Theme) =>
   });
 
 const Branding = ({ theme, classes }: Props) => {
-  const color = theme === 'light' ? '#1c1c1c' : '#ffffff';
+  const color = theme ? '#1c1c1c' : '#ffffff';
 
   return (
     <Link className={classes.branding} aria-label="Home" to="/">
