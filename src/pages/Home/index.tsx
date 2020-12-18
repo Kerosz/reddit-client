@@ -1,35 +1,33 @@
 import React from 'react';
-import useSWR from 'swr';
 import Container from '@material-ui/core/Container';
 import { withStyles } from '@material-ui/core/styles';
-import { Footer, Header, Sidebar, PostCard } from '../../components';
+import { Footer, Header, PostCard, Sidebar } from '../../components';
 import homeStyles, { StyleProps } from './home.styles';
-
-const fetcher = (url: string) => fetch(url).then((res) => res.json());
-
-function useData(url: string) {
-  const { data, error } = useSWR(url, fetcher);
-  return {
-    data,
-    isLoading: !error && !data,
-    isError: error,
-  };
-}
+import useDataWithMeta from '../../hooks/useDataWithMeta';
 
 const Home: React.FC<StyleProps> = ({ classes }) => {
   const path = window.location.pathname;
-  const { data: result } = useData(`https://www.reddit.com${path}.json`);
+
+  const { result: postsData } = useDataWithMeta(
+    `https://www.reddit.com${path}.json`,
+  );
+  const { result: subredditsData } = useDataWithMeta(
+    `https://www.reddit.com/subreddits/.json`,
+  );
 
   return (
     <>
       <Header />
       <Container maxWidth="lg">
         <main className={classes.main}>
-          <Sidebar result={result} />
+          <Sidebar result={subredditsData} />
           <div className={classes.content}>
-            {result?.data.children.map(({ data }: any) => {
-              return <PostCard data={data} key={data.id} />;
-            })}
+            {postsData?.map((post: any) => (
+              <PostCard data={post} key={post.id} />
+            ))}
+            {/* <button type="button" onClick={() => setPageNumber(pageNumber + 1)}>
+              Load More
+            </button> */}
           </div>
         </main>
         <Footer />

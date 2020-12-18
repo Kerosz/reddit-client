@@ -24,9 +24,10 @@ const postCardStyles = (theme: Theme) =>
       widht: '100%',
       minWidth: 240,
       backgroundColor: theme.palette.background.paper,
-      border: `1px solid ${fade(theme.palette.action.disabled, 0.2)}`,
+      border: `1px solid ${fade(theme.palette.action.disabled, 0.16)}`,
       borderRadius: 2,
-      marginBottom: 7,
+      marginBottom: 10,
+      boxShadow: `1px 1px 3px ${theme.palette.action.disabledBackground}`,
       '& a': {
         color: 'inherit',
         textDecoration: 'none',
@@ -37,7 +38,7 @@ const postCardStyles = (theme: Theme) =>
     },
     post: {
       width: '100%',
-      padding: 16,
+      padding: '16px 16px 4px',
     },
     ratings: {
       display: 'flex',
@@ -45,7 +46,7 @@ const postCardStyles = (theme: Theme) =>
       alignItems: 'center',
       width: 75,
       height: 'inherit',
-      borderLeft: `1px solid ${fade(theme.palette.action.disabled, 0.2)}`,
+      borderLeft: `1px solid ${fade(theme.palette.action.disabled, 0.16)}`,
       backgroundColor: theme.palette.action.selected,
       cursor: 'default',
       '& > h2': {

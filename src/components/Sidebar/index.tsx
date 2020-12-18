@@ -24,21 +24,8 @@ type Category = {
   icon: JSX.Element;
 };
 
-type ListProps = {
-  data: {
-    id: string;
-    subreddit: string;
-    thumbnail: string;
-    subreddit_subscribers: string;
-  };
-};
-
 type ResultProps = {
-  result?: {
-    data: {
-      children: [];
-    };
-  };
+  result: object[];
 };
 
 const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
@@ -78,9 +65,9 @@ const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
         <h3 className={classes.title}>Featured Subreddits</h3>
         <Divider />
         <List>
-          {result?.data.children.slice(0, 5).map(
-            ({ data }: ListProps): JSX.Element => {
-              const subCount = String(data.subreddit_subscribers).replace(
+          {result?.slice(0, 5).map(
+            (data: any): JSX.Element => {
+              const subCount = String(data.subscribers).replace(
                 /(\d)(?=(\d\d\d)+(?!\d))/g,
                 '$1.',
               );
@@ -88,11 +75,11 @@ const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
               return (
                 <ListItem button key={data.id}>
                   <ListItemAvatar>
-                    <Avatar alt={data.subreddit} src={data.thumbnail} />
+                    <Avatar alt={data.display_name} src={data.icon_img} />
                   </ListItemAvatar>
                   <ListItemText
-                    primary={`r/${data.subreddit}`}
-                    secondary={`Subscribers: ${subCount}`}
+                    primary={`r/${data.display_name}`}
+                    secondary={`${subCount} subscribers`}
                   />
                 </ListItem>
               );
@@ -101,7 +88,7 @@ const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
         </List>
         <Divider />
         <CardActions>
-          <Button size="small">All Categories</Button>
+          <Button size="small">All Subreddits</Button>
           <Button size="small">Near You</Button>
         </CardActions>
       </div>

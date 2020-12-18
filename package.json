@@ -62,7 +62,7 @@
     "eject": "react-scripts eject",
     "lint": "eslint '*/**/*.{js,ts,tsx}' --quiet --fix",
     "lint:precommit": "lint-staged",
-    "test:prepush": "jest --findRelatedTests"
+    "test:prepush": "jest --findRelatedTests ./**/*"
   },
   "lint-staged": {
     "**/*.+{js|jsx|tx|tsx|json}": [

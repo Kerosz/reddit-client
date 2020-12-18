@@ -5,9 +5,8 @@ import AppBar from '@material-ui/core/AppBar';
 import IconButton from '@material-ui/core/IconButton';
 import Brightness7Icon from '@material-ui/icons/Brightness7';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, useDispatch, RootStateOrAny } from 'react-redux';
 import { updateMode } from '../../features/theme/themeSlice';
-import { RootState } from '../../reducers/rootReducer';
 import Branding from './branding';
 import SearchBar from '../SearchBar';
 import UserAvatar from '../UserAvatar';
@@ -29,21 +28,17 @@ const ScrollEffect: React.FC<ScrollProps> = ({ children }) => {
 };
 
 const Header: React.FC<StyleProps> = ({ classes }) => {
-  const { mode } = useSelector((state: RootState) => state.theme);
+  const { lightMode } = useSelector((state: RootStateOrAny) => state.theme);
   const dispatch = useDispatch();
 
   const handleModeSwitch = () => {
-    if (mode === 'light') {
-      dispatch(updateMode('dark'));
-    } else {
-      dispatch(updateMode('light'));
-    }
+    dispatch(updateMode(!lightMode));
   };
 
   return (
     <ScrollEffect>
       <AppBar className={classes.navbar}>
-        <Branding theme={mode} />
+        <Branding theme={lightMode} />
         <SearchBar />
         <div className={classes.group}>
           <UserAvatar name="Andrei Chirila" email="andrei.chirila@gmail.com" />
@@ -54,7 +49,7 @@ const Header: React.FC<StyleProps> = ({ classes }) => {
             onClick={handleModeSwitch}
             color="inherit"
           >
-            {mode === 'light' ? (
+            {lightMode ? (
               <Brightness4Icon htmlColor="#1c1c1c" />
             ) : (
               <Brightness7Icon />
