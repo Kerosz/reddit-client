@@ -73,7 +73,12 @@ const Sidebar: React.FC<ResultProps & StyleProps> = ({ result, classes }) => {
               );
 
               return (
-                <ListItem button key={data.id}>
+                <ListItem
+                  component={Link}
+                  button
+                  key={data.id}
+                  to={`/subreddit/r/${data.display_name}`}
+                >
                   <ListItemAvatar>
                     <Avatar alt={data.display_name} src={data.icon_img} />
                   </ListItemAvatar>
