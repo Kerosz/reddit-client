@@ -17,7 +17,7 @@ const searchStyles = (theme: Theme) =>
       borderRadius: theme.shape.borderRadius,
       border: `1px solid ${fade(theme.palette.action.selected, 0.04)}`,
       backgroundColor: fade(theme.palette.action.hover, 0.04),
-      '&:hover': {
+      '&:hover, &:focus, &:active': {
         borderColor: theme.palette.clrHover.main,
       },
       marginLeft: theme.spacing(1),

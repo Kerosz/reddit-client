@@ -12,12 +12,20 @@ declare module '@material-ui/core/styles/createPalette' {
     clrHover: {
       main: React.CSSProperties['color'];
     };
+    clrReddit: React.CSSProperties['color'];
   }
   interface PaletteOptions {
     clrAccent: React.CSSProperties['color'];
     clrHover: {
       main: React.CSSProperties['color'];
     };
+    clrReddit: React.CSSProperties['color'];
+  }
+}
+
+declare module '@material-ui/core/styles/createBreakpoints' {
+  interface BreakpointOverrides {
+    xxs: true;
   }
 }
 

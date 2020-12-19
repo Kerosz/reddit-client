@@ -11,6 +11,17 @@ const darkTheme = createMuiTheme({
     clrHover: {
       main: '#fafafa',
     },
+    clrReddit: '#ff4500',
+  },
+  breakpoints: {
+    values: {
+      xs: 0,
+      xxs: 450,
+      sm: 600,
+      md: 960,
+      lg: 1280,
+      xl: 1920,
+    },
   },
 });
 

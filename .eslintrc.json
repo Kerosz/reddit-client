@@ -40,6 +40,7 @@
     "no-fallthrough": 1,
     "no-extra-boolean-cast": 1,
     "no-param-reassign": 0,
+    "react/react-in-jsx-scope": 0,
     "react/no-find-dom-node": 1,
     "react/no-unescaped-entities": "warn",
     "react/no-string-refs": "warn",
