@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import Theme from './theme';
+import ThemeProviderWithMode from './theme';
 import Home from './pages/home';
 import Post from './pages/post';
 import Subreddit from './pages/subreddit';
@@ -8,7 +8,7 @@ import Subreddits from './pages/subreddits';
 import User from './pages/user';
 
 const App: React.FC = () => (
-  <Theme>
+  <ThemeProviderWithMode>
     <Router>
       <Switch>
         <Route exact path={['/', '/filter/:category']} component={Home} />
@@ -22,7 +22,7 @@ const App: React.FC = () => (
         <Route exact path="/profile/u/:user" component={User} />
       </Switch>
     </Router>
-  </Theme>
+  </ThemeProviderWithMode>
 );
 
 export default App;
