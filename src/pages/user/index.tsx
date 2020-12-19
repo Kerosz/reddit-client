@@ -1,28 +1,19 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
 import { useParams } from 'react-router-dom';
-import { withStyles } from '@material-ui/core/styles';
-import { Footer, Header } from '../../components';
-import homeStyles, { StyleProps } from '../home/home.styles';
+import { Layout } from '../../components';
 
 type ParamsProps = {
   user: string;
 };
 
-const User: React.FC<StyleProps> = ({ classes }) => {
+const User: React.FC = () => {
   const { user } = useParams<ParamsProps>();
 
   return (
-    <>
-      <Header />
-      <Container maxWidth="lg">
-        <main className={classes.main}>
-          <div className={classes.content}>{user}</div>
-        </main>
-        <Footer />
-      </Container>
-    </>
+    <Layout aside sidebarProps={{ type: 'post' }}>
+      {user}
+    </Layout>
   );
 };
 
-export default withStyles(homeStyles)(User);
+export default User;

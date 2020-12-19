@@ -7,7 +7,7 @@ export type StyleProps = {
   };
 };
 
-const homeStyles = (theme: Theme) =>
+const layoutStyles = (theme: Theme) =>
   createStyles({
     main: {
       display: 'flex',
@@ -15,6 +15,7 @@ const homeStyles = (theme: Theme) =>
       margin: '85px 0',
     },
     content: {
+      width: '100%',
       marginLeft: 30,
       [theme.breakpoints.down('sm')]: {
         marginLeft: 0,
@@ -22,4 +23,4 @@ const homeStyles = (theme: Theme) =>
     },
   });
 
-export default homeStyles;
+export default layoutStyles;

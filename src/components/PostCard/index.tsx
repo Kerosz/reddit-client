@@ -8,7 +8,7 @@ import CommentIcon from '@material-ui/icons/Comment';
 import ShareIcon from '@material-ui/icons/Share';
 import LinkIcon from '@material-ui/icons/Link';
 import postCardStyles, { StyleProps } from './postCard.styles';
-import { formatNumbers, copyToClipboard } from '../../helpers';
+import { copyToClipboard, fd } from '../../helpers';
 
 export type ListProps = {
   data: {
@@ -60,17 +60,19 @@ const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
           <Avatar alt={data.subreddit} src={data.thumbnail} />
 
           <span data-testid="subreddit">
-            <Link to={`subreddit/r/${data.subreddit}`}>r/{data.subreddit}</Link>
+            <Link to={`/subreddit/r/${data.subreddit}`}>
+              r/{data.subreddit}
+            </Link>
           </span>
 
           <p data-testid="author">
             Posted by{' '}
-            <Link to={`profile/u/${data.author}`}>u/{data.author}</Link>
+            <Link to={`/profile/u/${data.author}`}>u/{data.author}</Link>
           </p>
         </header>
         <div className={classes.content}>
           <div className={classes.details}>
-            <Link to={`post${data.permalink}`}>
+            <Link to={`/post${data.permalink}`}>
               <div>
                 <h2 data-testid="title">{data.title}</h2>
                 {data.selftext && (
@@ -118,7 +120,7 @@ const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
         </div>
       </div>
       <div className={classes.ratings}>
-        <h2>{formatNumbers(data.ups, null)}</h2>
+        <h2>{fd.shortenLargeNumber(data.ups, null)}</h2>
       </div>
     </article>
   );
