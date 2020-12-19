@@ -51,6 +51,7 @@ const postCardStyles = (theme: Theme) =>
       cursor: 'default',
       '& > h2': {
         fontSize: 20,
+        color: theme.palette.text.secondary,
       },
       [theme.breakpoints.down('xs')]: {
         width: 45,

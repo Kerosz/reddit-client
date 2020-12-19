@@ -30,8 +30,8 @@ const Layout: React.FC<Props & StyleProps> = ({
         {aside && <Sidebar {...sidebarProps} />}
         <div className={classes.content}>{children}</div>
       </main>
-      <Footer />
     </Container>
+    <Footer />
   </>
 );
 

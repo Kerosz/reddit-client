@@ -1,7 +1,11 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import CssBaseline from '@material-ui/core/CssBaseline';
-import { ThemeProvider } from '@material-ui/core/styles';
+import {
+  createMuiTheme,
+  ThemeProvider,
+  CssBaseline,
+  Theme,
+} from '@material-ui/core';
 import { useSelector, RootStateOrAny } from 'react-redux';
 import darkTheme from './dark';
 import lightTheme from './light';
@@ -33,9 +37,39 @@ type Props = {
   children: React.ReactNode;
 };
 
-const Theme: React.FC<Props> = ({ children }) => {
+// TODO: Find out a way to make themeMode work without having to pass the object type
+const themeConstructor = (): Theme => {
   const { lightMode } = useSelector((state: RootStateOrAny) => state.theme);
-  const theme = lightMode ? lightTheme : darkTheme;
+  const themeBasedOnMode: object = lightMode ? lightTheme : darkTheme;
+
+  return createMuiTheme({
+    ...themeBasedOnMode,
+    breakpoints: {
+      values: {
+        xs: 0,
+        xxs: 450,
+        sm: 600,
+        md: 960,
+        lg: 1280,
+        xl: 1920,
+      },
+    },
+    overrides: {
+      MuiCssBaseline: {
+        '@global': {
+          html: {
+            WebkitFontSmoothing: 'auto',
+            margin: 0,
+            padding: 0,
+          },
+        },
+      },
+    },
+  });
+};
+
+const ThemeProviderWithMode: React.FC<Props> = ({ children }) => {
+  const theme = themeConstructor();
 
   return (
     <ThemeProvider theme={theme}>
@@ -45,4 +79,4 @@ const Theme: React.FC<Props> = ({ children }) => {
   );
 };
 
-export default Theme;
+export default ThemeProviderWithMode;

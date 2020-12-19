@@ -102,7 +102,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           <a
             href={post.url_overridden_by_dest}
             target="_blank"
-            rel="noreferrer"
+            rel="noopener noreferrer"
           >
             <img
               alt={post.title}
@@ -125,12 +125,5 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
     </Layout>
   );
 };
-
-// {post?.title}
-// <ul>
-//   {comments?.map(({ data }: any) => (
-//     <li key={data.id}>{data.body}</li>
-//   ))}
-// </ul>
 
 export default withStyles(postStyles)(Post);
