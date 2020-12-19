@@ -21,12 +21,17 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   const { subreddit, type, id, name } = useParams<ParamsProps>();
   const postUrl = `https://www.reddit.com/r/${subreddit}/${type}/${id}/${name}/.json`;
 
-  const { result: post, isLoading }: any = usePostsWithComments(postUrl);
+  const { post, comments, isLoading }: any = usePostsWithComments(postUrl);
+
+  // console.log(post);
+  // console.log(comments);
 
   if (isLoading) {
     return (
       <Layout aside sidebarProps={{ type: 'post' }}>
-        Loading...
+        <article className={classes.post} aria-label="post content">
+          Loading...
+        </article>
       </Layout>
     );
   }
@@ -50,63 +55,72 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           />
           <StyledBreadcrumb
             component={Link}
-            to={`/subreddit/r/${post?.subreddit}`}
-            label={post?.subreddit}
+            to={`/subreddit/r/${post.subreddit}`}
+            label={post.subreddit}
             clickable
           />
-          <StyledBreadcrumb label={post?.name} disabled />
+          <StyledBreadcrumb label={post.name} disabled />
         </Breadcrumbs>
-        {/* upvote_ratio */}
         <div className={classes.top}>
           <aside className={classes.info}>
-            {fd.shortenLargeNumber(post?.ups, null)} <span>upvotes</span>
+            {fd.shortenLargeNumber(post.ups, null)}
+            <span>{Number(post.upvote_ratio) * 100}% ratio</span>
           </aside>
           <Divider orientation="vertical" flexItem />
           <Divider orientation="horizontal" className={classes.divider} />
           <header className={classes.header} aria-label="article head">
             <div className={classes.panel}>
-              <Avatar alt={post?.author} src={post?.thumbnail} />
+              <Avatar alt={post?.author} src={post.thumbnail} />
               <span
                 aria-label="author name"
                 style={{
-                  color: post?.author_flair_background_color
-                    ? post?.author_flair_background_color
-                    : 'inherit',
+                  color:
+                    post.author_flair_background_color &&
+                    post.author_flair_background_color,
                 }}
               >
-                {post?.author}
+                {post.author}
               </span>
               <time aria-label="time posted">
-                {post?.created_utc && fd.getTimeFromNow(post?.created_utc)}
+                {post?.created_utc && fd.getTimeFromNow(post.created_utc)}
               </time>
             </div>
-            <h1 className={classes.title}>{post?.title}</h1>
+            <h1 className={classes.title}>{post.title}</h1>
             <div
               className={classes.underLine}
-              style={
-                post?.author_flair_background_color
-                  ? {
-                      background: post?.author_flair_background_color,
-                    }
-                  : { background: 'inherit' }
-              }
+              style={{
+                backgroundColor:
+                  post.author_flair_background_color &&
+                  post.author_flair_background_color,
+              }}
             />
           </header>
         </div>
-        <p className={classes.description}>{post?.selftext}</p>
+        <p className={classes.description}>{post.selftext}</p>
 
-        {post?.post_hint && (
-          <img
-            src={post?.url_overridden_by_dest}
-            alt={post?.title}
-            style={{
-              backgroundImage: post?.url_overridden_by_dest
-                ? `url(${post?.url_overridden_by_dest})`
-                : 'inherit',
-            }}
-            className={classes.preview}
-          />
+        {post.post_hint === 'image' && (
+          <a
+            href={post.url_overridden_by_dest}
+            target="_blank"
+            rel="noreferrer"
+          >
+            <img
+              alt={post.title}
+              style={{
+                backgroundImage: post.url_overridden_by_dest
+                  ? `url(${post.url_overridden_by_dest})`
+                  : 'inherit',
+              }}
+              className={classes.preview}
+            />
+          </a>
         )}
+
+        <ul>
+          {comments.map(({ data }: any) => (
+            <li>{data.body}</li>
+          ))}
+        </ul>
       </article>
     </Layout>
   );

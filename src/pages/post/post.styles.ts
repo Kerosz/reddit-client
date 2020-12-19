@@ -51,14 +51,29 @@ const postStyles = (theme: Theme) =>
       },
     },
     info: {
-      marginRight: theme.spacing(2.4),
+      width: '15%',
+      maxWidth: '60px',
+      display: 'flex',
+      flexDirection: 'column',
       fontWeight: 600,
       fontSize: 17,
       paddingTop: theme.spacing(1),
+      marginRight: theme.spacing(1),
       color: theme.palette.text.secondary,
       [theme.breakpoints.down('xs')]: {
+        width: '100%',
+        maxWidth: 'none',
+        flexDirection: 'row',
         paddingTop: theme.spacing(0),
         marginBottom: theme.spacing(1.2),
+      },
+      '& > span': {
+        fontSize: 13,
+        fontWeight: 500,
+        paddingTop: theme.spacing(0.54),
+        [theme.breakpoints.down('xs')]: {
+          paddingLeft: theme.spacing(2),
+        },
       },
     },
     divider: {
@@ -95,7 +110,7 @@ const postStyles = (theme: Theme) =>
     underLine: {
       width: 120,
       height: 5,
-      background: theme.palette.clrReddit,
+      backgroundColor: theme.palette.clrReddit,
       marginTop: theme.spacing(1),
       marginBottom: theme.spacing(8),
       [theme.breakpoints.down('xs')]: {
