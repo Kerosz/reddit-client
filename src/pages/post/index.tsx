@@ -21,12 +21,15 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   const { subreddit, type, id, name } = useParams<ParamsProps>();
   const postUrl = `https://www.reddit.com/r/${subreddit}/${type}/${id}/${name}/.json`;
 
-  const { result: post } = usePostsWithComments(postUrl);
+  const { result: post, isLoading }: any = usePostsWithComments(postUrl);
 
-  console.log(post);
-  console.log(
-    `https://www.reddit.com/r/${subreddit}/${type}/${id}/${name}/.json`,
-  );
+  if (isLoading) {
+    return (
+      <Layout aside sidebarProps={{ type: 'post' }}>
+        Loading...
+      </Layout>
+    );
+  }
 
   return (
     <Layout aside sidebarProps={{ type: 'post' }}>
@@ -91,21 +94,18 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           </header>
         </div>
         <p className={classes.description}>{post?.selftext}</p>
+
         {post?.post_hint && (
-          <a href={post?.url_overridden_by_dest} target="blank">
-            <img
-              style={
-                post?.url_overridden_by_dest && {
-                  background: `url(${post?.url_overridden_by_dest})`,
-                  backgroundSize: 'cover',
-                  backgroundPosition: 'center',
-                  backgroundRepeat: 'no-repeat',
-                }
-              }
-              alt={post?.title}
-              className={classes.preview}
-            />
-          </a>
+          <img
+            src={post?.url_overridden_by_dest}
+            alt={post?.title}
+            style={{
+              backgroundImage: post?.url_overridden_by_dest
+                ? `url(${post?.url_overridden_by_dest})`
+                : 'inherit',
+            }}
+            className={classes.preview}
+          />
         )}
       </article>
     </Layout>

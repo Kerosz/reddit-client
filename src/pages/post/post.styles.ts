@@ -116,10 +116,13 @@ const postStyles = (theme: Theme) =>
       },
     },
     preview: {
+      display: 'block',
       width: '100%',
       overflow: 'hidden',
       height: 0,
       paddingTop: '64.25%',
+      backgroundRepeat: 'no-repeat',
+      backgroundSize: 'cover',
     },
   });
 

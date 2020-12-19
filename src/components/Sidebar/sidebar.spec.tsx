@@ -4,7 +4,9 @@ import { MemoryRouter } from 'react-router-dom';
 
 import Sidebar from './index';
 
-const renderWithMemory = (component: React.ReactElement) =>
+const renderWithMemory = (
+  component: React.ReactElement,
+): ReturnType<typeof render> =>
   render(<MemoryRouter>{component}</MemoryRouter>);
 
 describe('Sidebar component', () => {
