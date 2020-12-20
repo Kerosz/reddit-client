@@ -6,7 +6,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import { withStyles } from '@material-ui/core/styles';
 import { Link, useParams } from 'react-router-dom';
 import { fd } from '../../helpers';
-import { Layout } from '../../components';
+import { Layout, Card } from '../../components';
 import usePostsWithComments from '../../hooks/usePostsWithComments';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
 
@@ -24,7 +24,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   const { post, comments, isLoading }: any = usePostsWithComments(postUrl);
 
   // console.log(post);
-  // console.log(comments);
+  console.log(comments);
 
   if (isLoading) {
     return (
@@ -118,7 +118,14 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
 
         <ul>
           {comments.map(({ data }: any) => (
-            <li>{data.body}</li>
+            <Card
+              component="li"
+              type="comment"
+              commentProps={{ data }}
+              key={data.id}
+            >
+              {data.body}
+            </Card>
           ))}
         </ul>
       </article>

@@ -12,12 +12,8 @@ const Subreddits: React.FC = () => {
     <Layout>
       <Grid container spacing={3}>
         {subreddits?.map((subreddit: any) => (
-          <Grid item xl={4} md={4} sm={6} xs={12}>
-            <Card
-              type="subreddit"
-              subredditProps={{ data: subreddit }}
-              key={subreddit.id}
-            />
+          <Grid item xl={4} md={4} sm={6} xs={12} key={subreddit.id}>
+            <Card type="subreddit" subredditProps={{ data: subreddit }} />
           </Grid>
         ))}
       </Grid>

@@ -4,27 +4,29 @@ import PostCard, { PostDataProps } from './postCard';
 import CommentCard, { CommentDataProps } from './commentCard';
 
 type Props = {
-  type?: 'comment' | 'subreddit' | null | undefined;
-  postProps?: PostDataProps | null | undefined;
-  subredditProps?: SubredditDataProps | null | undefined;
-  commentProps?: CommentDataProps | null | undefined;
+  component?: string | null;
+  type?: 'comment' | 'subreddit' | null;
+  postProps?: PostDataProps | null;
+  subredditProps?: SubredditDataProps | null;
+  commentProps?: CommentDataProps | null;
 };
 
 const Card: React.FC<Props> = ({
+  component = 'div',
   type,
   postProps,
   subredditProps,
   commentProps,
 }) => {
   if (type === 'subreddit') {
-    return <SubredditCard {...subredditProps} />;
+    return <SubredditCard as={component} {...subredditProps} />;
   }
 
   if (type === 'comment') {
-    return <CommentCard {...commentProps} />;
+    return <CommentCard as={component} {...commentProps} />;
   }
 
-  return <PostCard {...postProps} />;
+  return <PostCard as={component} {...postProps} />;
 };
 
 export default Card;
