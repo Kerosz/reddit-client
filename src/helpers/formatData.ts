@@ -4,10 +4,10 @@ import relativeTime from 'dayjs/plugin/relativeTime';
 
 dayjs.extend(relativeTime);
 
-function shortenLargeNumber(
+const shortenLargeNumber = (
   value: number | string,
-  digits: number | undefined | null,
-) {
+  digits?: number | undefined | null,
+) => {
   if (typeof value === 'string') value = Number(value);
   if (!digits) digits = 1;
 
@@ -23,10 +23,24 @@ function shortenLargeNumber(
   }
 
   return value;
-}
-
-const getTimeFromNow = (value: string | number) => {
-  return dayjs.unix(Number(value)).fromNow();
 };
 
-export default { shortenLargeNumber, getTimeFromNow };
+const addNumberSeparator = (
+  value: string | number,
+  separator?: string | null,
+): string => {
+  if (typeof value === 'number') value = String(value);
+  if (!separator) separator = '.';
+
+  return value.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, `$1${separator}`);
+};
+
+const getTimeFromNow = (
+  value: string | number,
+  option?: boolean | null | undefined,
+) => {
+  if (!option) option = false;
+  return dayjs.unix(Number(value)).fromNow(option);
+};
+
+export default { shortenLargeNumber, getTimeFromNow, addNumberSeparator };

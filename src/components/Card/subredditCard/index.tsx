@@ -3,14 +3,18 @@ import { Link } from 'react-router-dom';
 import {
   withStyles,
   Card,
+  CardHeader,
+  CardMedia,
   CardActions,
   CardContent,
   Button,
   Typography,
-  Chip,
   Avatar,
+  Chip,
 } from '@material-ui/core';
+import ReplyAllIcon from '@material-ui/icons/ReplyAll';
 import subredditCardStyles, { StyleProps } from './subredditCard.styles';
+import { fd } from '../../../helpers';
 
 export type SubredditDataProps = {
   data?: {
@@ -36,37 +40,58 @@ const SubredditCard: React.FC<StyleProps & SubredditDataProps> = ({
 }): React.ReactElement | null => {
   if (!data) return null;
 
-  let shortDescription;
-  if (data.public_description) {
-    shortDescription = data.public_description;
-  } else {
-    [shortDescription] = data.description.split('\n');
-  }
+  const shortDescription =
+    data.public_description || data.description.split('\n')[0];
+
+  const headerPreview =
+    data.banner_img ||
+    `${process.env.PUBLIC_URL}/images/subreddit_placeholder.png`;
+
+  const timeSinceCreated = fd.getTimeFromNow(data.created_utc, true);
+  const formatedSubscribers = fd.shortenLargeNumber(data.subscribers);
 
   return (
     <Card className={classes.root}>
+      <CardHeader
+        avatar={
+          <Avatar aria-label="recipe" src={data.icon_img} alt={data.title} />
+        }
+        title={data.display_name_prefixed}
+        subheader={`a community for ${timeSinceCreated}`}
+        component={Link}
+        to={`/subreddit${data.url}`}
+        className={classes.header}
+      />
+      <CardMedia
+        className={classes.media}
+        image={headerPreview}
+        title={data.title}
+        component={Link}
+        to={`/subreddit${data.url}`}
+      />
       <CardContent>
         <Chip
-          avatar={<Avatar src={data.icon_img} alt={data.title} />}
-          label={data.display_name_prefixed}
+          variant="outlined"
+          color="primary"
+          label={`${formatedSubscribers} subscribers`}
+        />
+        <div className={classes.body}>
+          <Typography variant="h5" component="h2">
+            {data.title}
+          </Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {shortDescription}
+          </Typography>
+        </div>
+      </CardContent>
+      <CardActions disableSpacing>
+        <Button
+          aria-label="browse subreddit"
+          startIcon={<ReplyAllIcon />}
           component={Link}
           to={`/subreddit${data.url}`}
-          style={{
-            backgroundColor: data.primary_color ? data.primary_color : '',
-            color: data.key_color ? data.key_color : 'inherit',
-          }}
-          clickable
-        />
-        <Typography variant="h5" component="h2">
-          {data.title}
-        </Typography>
-        <Typography variant="body2" component="p">
-          {shortDescription}
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small" component={Link} to={`/subreddit${data.url}`}>
-          Browse Subreddit
+        >
+          Browse subreddit
         </Button>
       </CardActions>
     </Card>
