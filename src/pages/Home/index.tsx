@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Layout, PostCard } from '../../components';
+import { Layout, Card } from '../../components';
 import useDataWithMeta from '../../hooks/useDataWithMeta';
 
 type ParamsProps = {
@@ -20,7 +20,7 @@ const Home: React.FC = () => {
   return (
     <Layout aside>
       {postsData?.map((post: any) => (
-        <PostCard data={post} key={post.id} />
+        <Card postProps={{ data: post }} key={post.id} />
       ))}
     </Layout>
   );

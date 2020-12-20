@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Layout, PostCard } from '../../components';
+import { Layout, Card } from '../../components';
 
 import useDataWithMeta from '../../hooks/useDataWithMeta';
 
@@ -17,7 +17,7 @@ const Subreddit: React.FC = () => {
   return (
     <Layout aside sidebarProps={{ type: 'post' }}>
       {posts?.map((post: any) => (
-        <PostCard data={post} key={post.id} />
+        <Card postProps={{ data: post }} key={post.id} />
       ))}
     </Layout>
   );

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, PostCard } from '../../components';
+import { Layout, Card } from '../../components';
 import useDataWithMeta from '../../hooks/useDataWithMeta';
 
 const Subreddits: React.FC = () => {
@@ -7,10 +7,16 @@ const Subreddits: React.FC = () => {
 
   const { result: subreddits } = useDataWithMeta(subredditUrl);
 
+  console.log(subreddits);
+
   return (
     <Layout>
-      {subreddits?.map((post: any) => (
-        <PostCard data={post} key={post.id} />
+      {subreddits?.map((subreddit: any) => (
+        <Card
+          type="subreddit"
+          subredditProps={{ data: subreddit }}
+          key={subreddit.id}
+        />
       ))}
     </Layout>
   );

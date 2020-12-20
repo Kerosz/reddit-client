@@ -70,7 +70,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           <Divider orientation="horizontal" className={classes.divider} />
           <header className={classes.header} aria-label="article head">
             <div className={classes.panel}>
-              <Avatar alt={post?.author} src={post.thumbnail} />
+              <Avatar alt={post.author} src={post.thumbnail} />
               <span
                 aria-label="author name"
                 style={{

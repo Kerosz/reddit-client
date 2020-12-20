@@ -1,11 +1,11 @@
 import React from 'react';
 import { render, screen, cleanup } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import PostCard, { ListProps } from './index';
+import PostCard, { PostDataProps } from './index';
 
 const renderWithMemoryAndProps = (
   Component: React.FC | any,
-  props: ListProps,
+  props: PostDataProps,
 ) =>
   render(
     <MemoryRouter>

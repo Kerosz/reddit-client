@@ -7,6 +7,7 @@ type Props = {
 };
 
 type InfoItem = {
+  id: number;
   label: string;
   link: string;
   target?: true | false | null | undefined;
@@ -14,26 +15,31 @@ type InfoItem = {
 
 const footerLinks: InfoItem[] = [
   {
+    id: 1,
     label: 'About',
-    link: 'https://github.com/Kerosz/reddit-client',
+    link: 'https://github.com/Kerosz/reddit-client/blob/main/README.md',
     target: true,
   },
   {
+    id: 2,
     label: 'License/Legal',
     link: 'https://github.com/Kerosz/reddit-client/blob/main/LICENSE',
     target: true,
   },
   {
+    id: 3,
     label: 'Issues',
     link: 'https://github.com/Kerosz/reddit-client/issues',
     target: true,
   },
   {
+    id: 4,
     label: 'Project Board',
     link: 'https://github.com/Kerosz/reddit-client/projects',
     target: true,
   },
   {
+    id: 5,
     label: 'Backlog',
     link: 'https://github.com/Kerosz/reddit-client/milestone/1',
     target: true,
@@ -52,11 +58,16 @@ const Footer: React.FC<Props & StyleProps> = ({ width = 'lg', classes }) => (
                 target="_blank"
                 rel="noopener noreferrer"
                 className={classes.item}
+                key={`${item.id}-${item.label}`}
               >
                 <li>{item.label}</li>
               </a>
             ) : (
-              <a href={item.link} className={classes.item}>
+              <a
+                href={item.link}
+                className={classes.item}
+                key={`${item.id}-${item.label}`}
+              >
                 <li>{item.label}</li>
               </a>
             ),

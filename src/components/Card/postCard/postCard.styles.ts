@@ -27,13 +27,14 @@ const postCardStyles = (theme: Theme) =>
       border: `1px solid ${fade(theme.palette.action.disabled, 0.16)}`,
       borderRadius: 2,
       marginBottom: 10,
-      boxShadow: `1px 1px 3px ${theme.palette.action.disabledBackground}`,
+      transition: 'all 150ms',
       '& a': {
         color: 'inherit',
         textDecoration: 'none',
       },
       '&:hover': {
-        borderColor: theme.palette.primary.main,
+        transform: 'translate(3px, -2px)',
+        boxShadow: `0 4px 3px -2px ${theme.palette.action.disabledBackground}`,
       },
     },
     post: {
