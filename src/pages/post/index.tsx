@@ -39,7 +39,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   return (
     <Layout aside sidebarProps={{ type: 'post' }}>
       <article className={classes.post} aria-label="post content">
-        <Breadcrumbs aria-label="breadcrumb">
+        <Breadcrumbs aria-label="breadcrumbs" component="nav">
           <StyledBreadcrumb
             component={Link}
             to="/"
@@ -61,14 +61,15 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           />
           <StyledBreadcrumb label={post.name} disabled />
         </Breadcrumbs>
-        <div className={classes.top}>
+
+        <header className={classes.header} aria-label="post head">
           <aside className={classes.info}>
             {fd.shortenLargeNumber(post.ups, null)}
-            <span>{Number(post.upvote_ratio) * 100}% ratio</span>
+            <span>{post.upvote_ratio * 100}% ratio</span>
           </aside>
           <Divider orientation="vertical" flexItem />
           <Divider orientation="horizontal" className={classes.divider} />
-          <header className={classes.header} aria-label="article head">
+          <div className={classes.top} aria-label="article head">
             <div className={classes.panel}>
               <Avatar alt={post.author} src={post.thumbnail} />
               <span
@@ -94,40 +95,46 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
                   post.author_flair_background_color,
               }}
             />
-          </header>
-        </div>
-        <p className={classes.description}>{post.selftext}</p>
+          </div>
+        </header>
 
-        {post.post_hint === 'image' && (
-          <a
-            href={post.url_overridden_by_dest}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <img
-              alt={post.title}
-              style={{
-                backgroundImage: post.url_overridden_by_dest
-                  ? `url(${post.url_overridden_by_dest})`
-                  : 'inherit',
-              }}
-              className={classes.preview}
-            />
-          </a>
-        )}
+        <section aria-label="post body" className={classes.body}>
+          {post.selftext && (
+            <p className={classes.description}>{post.selftext}</p>
+          )}
 
-        <ul>
-          {comments.map(({ data }: any) => (
-            <Card
-              component="li"
-              type="comment"
-              commentProps={{ data }}
-              key={data.id}
+          {post.post_hint === 'image' && (
+            <a
+              href={post.url_overridden_by_dest}
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              {data.body}
-            </Card>
-          ))}
-        </ul>
+              <img
+                alt={post.title}
+                style={{
+                  backgroundImage: post.url_overridden_by_dest
+                    ? `url(${post.url_overridden_by_dest})`
+                    : 'inherit',
+                }}
+                className={classes.preview}
+              />
+            </a>
+          )}
+        </section>
+
+        <section aria-label="discussion list" className={classes.comments}>
+          <h2>Discussions</h2>
+          <ul>
+            {comments.map(({ data }: any) => (
+              <Card
+                component="li"
+                type="comment"
+                commentProps={{ data, postId: post.id }}
+                key={data.id}
+              />
+            ))}
+          </ul>
+        </section>
       </article>
     </Layout>
   );

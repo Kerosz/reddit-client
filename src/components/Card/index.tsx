@@ -1,10 +1,10 @@
 import React from 'react';
-import SubredditCard, { SubredditDataProps } from './subredditCard';
 import PostCard, { PostDataProps } from './postCard';
 import CommentCard, { CommentDataProps } from './commentCard';
+import SubredditCard, { SubredditDataProps } from './subredditCard';
 
 type Props = {
-  component?: string | null;
+  component?: React.ElementType;
   type?: 'comment' | 'subreddit' | null;
   postProps?: PostDataProps | null;
   subredditProps?: SubredditDataProps | null;
@@ -19,14 +19,14 @@ const Card: React.FC<Props> = ({
   commentProps,
 }) => {
   if (type === 'subreddit') {
-    return <SubredditCard as={component} {...subredditProps} />;
+    return <SubredditCard {...subredditProps} />;
   }
 
   if (type === 'comment') {
-    return <CommentCard as={component} {...commentProps} />;
+    return <CommentCard component={component} {...commentProps} />;
   }
 
-  return <PostCard as={component} {...postProps} />;
+  return <PostCard component={component} {...postProps} />;
 };
 
 export default Card;

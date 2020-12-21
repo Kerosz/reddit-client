@@ -8,6 +8,7 @@ import { copyToClipboard, fd } from '../../../helpers';
 import postCardStyles, { StyleProps } from './postCard.styles';
 
 export type PostDataProps = {
+  component?: React.ElementType;
   data?: {
     subreddit: string;
     title: string;
@@ -16,14 +17,16 @@ export type PostDataProps = {
     thumbnail: string;
     permalink: string;
     url: string;
-    ups: string;
+    ups: number;
   };
 };
 
 const PostCard: React.FC<StyleProps & PostDataProps> = ({
+  component: Component,
   classes,
   data,
 }): React.ReactElement | null => {
+  if (!Component) throw new Error('Component was not specified');
   if (!data) return null;
 
   const checkForImage = (value: string): boolean => {
@@ -56,9 +59,9 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
   }
 
   return (
-    <article className={classes.root} aria-label="reddit post">
+    <Component className={classes.root} aria-label="reddit post">
       <div className={classes.post}>
-        <header className={classes.header}>
+        <header className={classes.header} aria-label="post head">
           <Avatar alt={data.subreddit} src={data.thumbnail} />
 
           <span data-testid="subreddit">
@@ -72,21 +75,19 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
             <Link to={`/profile/u/${data.author}`}>u/{data.author}</Link>
           </p>
         </header>
-        <div className={classes.content}>
+        <section className={classes.content} aria-label="post body">
           <div className={classes.details}>
             <Link to={`/post${data.permalink}`}>
-              <div>
-                <h2 data-testid="title">{data.title}</h2>
-                {data.selftext && (
-                  <p data-testid="description">
-                    {`${
-                      data.selftext.length > 200
-                        ? `${data.selftext.slice(0, 200)}...`
-                        : data.selftext
-                    }`}
-                  </p>
-                )}
-              </div>
+              <h2 data-testid="title">{data.title}</h2>
+              {data.selftext && (
+                <p data-testid="description">
+                  {`${
+                    data.selftext.length > 200
+                      ? `${data.selftext.slice(0, 200)}...`
+                      : data.selftext
+                  }`}
+                </p>
+              )}
             </Link>
             <div className={classes.actions}>
               <Button
@@ -119,12 +120,12 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
           <div className={classes.preview} data-testid="preview">
             {preview}
           </div>
-        </div>
+        </section>
       </div>
       <div className={classes.ratings}>
         <h2>{fd.shortenLargeNumber(data.ups, null)}</h2>
       </div>
-    </article>
+    </Component>
   );
 };
 

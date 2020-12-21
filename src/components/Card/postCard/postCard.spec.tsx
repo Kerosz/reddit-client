@@ -1,46 +1,66 @@
-import React from 'react';
-import { render, screen, cleanup } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
-import PostCard, { PostDataProps } from './index';
+import { cleanup } from '@testing-library/react';
+import { renderWithMemoryAndProps } from '../../../helpers';
 
-const renderWithMemoryAndProps = (
-  Component: React.FC | any,
-  props: PostDataProps,
-) =>
-  render(
-    <MemoryRouter>
-      <Component {...props} />
-    </MemoryRouter>,
-  );
+import PostCard from '.';
+
+const dataProps = {
+  subreddit: 'news',
+  thumbnail: 'http://reddit.com/test-image.jpg',
+  author: 'newyorktimes',
+  selftext: 'Peole are holding hands and singing together',
+  title: 'The world is nice',
+  url: 'http://reddit.com/test-image.jpg',
+  permalink: '/r/subreddit/comments/ke6j9j/the_world_is_nice/',
+  ups: 3149,
+};
 
 describe('Post card component', () => {
-  beforeEach(() => {
-    const postProps = {
-      data: {
-        subreddit: 'news',
-        thumbnail: 'http://reddit.com/test-image.jpg',
-        author: 'newyorktimes',
-        selftext: 'Peole are holding hands and singing together',
-        title: 'The world is nice',
-        url: 'http://reddit.com/test-image.jpg',
-        permalink: '/r/subreddit/comments/ke6j9j/the_world_is_nice/',
-        ups: '91.1kk',
-      },
-    };
-    renderWithMemoryAndProps(PostCard, postProps);
-  });
   afterEach(() => cleanup);
 
   describe('Rendering', () => {
+    it('Should throw an error if no component specified', () => {
+      const props = {
+        data: dataProps,
+      };
+
+      expect(() => renderWithMemoryAndProps(PostCard, props)).toThrowError(
+        /^Component was not specified$/,
+      );
+    });
+
+    it('Should return null if no data was passed', () => {
+      const props = {
+        component: 'div',
+      };
+
+      const { container } = renderWithMemoryAndProps(PostCard, props);
+
+      expect(container.firstChild).toBeNull();
+    });
+
     it('Should render without errors', () => {
-      expect(screen).toBeTruthy();
+      const props = {
+        component: 'div',
+        data: dataProps,
+      };
+
+      const wrapper = renderWithMemoryAndProps(PostCard, props);
+
+      expect(wrapper).toBeTruthy();
     });
 
     it('Should render a post with data', () => {
-      const subreddit = screen.getByTestId('subreddit');
-      const author = screen.getByTestId('author');
-      const title = screen.getByTestId('title');
-      const description = screen.getByTestId('description');
+      const props = {
+        component: 'div',
+        data: dataProps,
+      };
+
+      const { getByTestId } = renderWithMemoryAndProps(PostCard, props);
+
+      const subreddit = getByTestId('subreddit');
+      const author = getByTestId('author');
+      const title = getByTestId('title');
+      const description = getByTestId('description');
 
       expect(subreddit).toHaveTextContent('r/news');
       expect(author).toHaveTextContent('Posted by u/newyorktimes');

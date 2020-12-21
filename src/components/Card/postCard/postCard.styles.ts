@@ -91,6 +91,9 @@ const postCardStyles = (theme: Theme) =>
         fontSize: 16,
         lineHeight: 1.6,
       },
+      '& h2': {
+        fontSize: 19,
+      },
     },
     actions: {
       marginTop: 10,
