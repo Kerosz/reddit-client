@@ -1,5 +1,6 @@
 {
   "name": "reddit-client",
+  "homepage": ".",
   "version": "0.10.0",
   "description": "Reddit Client Redesign is the unofficial Reddit frontend app concept to tune the experience of the users and greater increase the browsing experience.",
   "author": "Andrei C.",
@@ -12,6 +13,7 @@
   "bugs": {
     "url": "https://github.com/Kerosz/reddit-redesign/issues"
   },
+  "proxy": "https://www.reddit.com",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",

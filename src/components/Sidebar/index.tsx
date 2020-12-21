@@ -30,7 +30,7 @@ type Props = {
 };
 
 const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
-  const subredditUrl = `https://www.reddit.com/subreddits/.json`;
+  const subredditUrl = `/subreddits/.json`;
 
   const categories: Category[] = [
     { name: 'all', path: '/', icon: <DynamicFeedIcon /> },

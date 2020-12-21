@@ -5,7 +5,7 @@ import useDataWithMeta from '../../hooks/useDataWithMeta';
 
 // TODO: Figure out how to make the material-ui grid fluid, so that it won't force the same height on the cards on the same row
 const Subreddits: React.FC = () => {
-  const subredditUrl = `https://www.reddit.com/subreddits/.json`;
+  const subredditUrl = `/subreddits/.json`;
 
   const { result: subreddits, isLoading } = useDataWithMeta(subredditUrl);
 

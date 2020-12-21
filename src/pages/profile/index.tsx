@@ -10,7 +10,7 @@ type ParamsProps = {
 
 const User: React.FC = () => {
   const { user } = useParams<ParamsProps>();
-  const userUrl = `https://www.reddit.com/user/${user}/.json`;
+  const userUrl = `/user/${user}/.json`;
 
   const { posts: userData, isLoading } = useDataWithComments(userUrl);
 
