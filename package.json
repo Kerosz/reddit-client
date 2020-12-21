@@ -13,7 +13,6 @@
   "bugs": {
     "url": "https://github.com/Kerosz/reddit-redesign/issues"
   },
-  "proxy": "https://www.reddit.com",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/icons": "^4.11.2",

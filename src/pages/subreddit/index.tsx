@@ -10,7 +10,7 @@ type ParamsProps = {
 
 const Subreddit: React.FC = () => {
   const { subreddit } = useParams<ParamsProps>();
-  const subredditUrl = `/r/${subreddit}/.json`;
+  const subredditUrl = `https://www.reddit.com/r/${subreddit}/.json`;
 
   const { result: posts, isLoading } = useDataWithMeta(subredditUrl);
 

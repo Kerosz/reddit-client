@@ -12,7 +12,9 @@ const Home: React.FC = () => {
   const { category } = useParams<ParamsProps>();
 
   const { result: postsData, isLoading } = useDataWithMeta(
-    category ? `/${category}/.json` : '/.json',
+    category
+      ? `https://www.reddit.com/${category}/.json`
+      : 'https://www.reddit.com/.json',
   );
 
   if (isLoading) {

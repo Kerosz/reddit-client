@@ -24,7 +24,7 @@ type ParamsProps = {
 
 const Post: React.FC<StyleProps> = ({ classes }) => {
   const { subreddit, type, id, name } = useParams<ParamsProps>();
-  const postUrl = `/r/${subreddit}/${type}/${id}/${name}/.json`;
+  const postUrl = `https://www.reddit.com/r/${subreddit}/${type}/${id}/${name}/.json`;
 
   const { post, comments, isLoading }: any = usePostsWithComments(postUrl);
 
