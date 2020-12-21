@@ -1,8 +1,8 @@
 <div align="center">
 
-[![Reddit-Client](./public/images/media.png)](https://github.com/Kerosz/reddit-client)
+[![Reddit-Client](./public/images/preview/one.png)](https://github.com/Kerosz/reddit-client)
 
-### Modern, compact.
+### Modern, compact & simple
 
 </div>
 
@@ -35,8 +35,7 @@ that impact millions of users. Users need modern changes that improves the
 usability and experience of their favorite online applications.
 
 **Reddit Client Redesign is the unofficial [Reddit](https://www.reddit.com/)
-frontend app concept to tune the experience of the users and greater increase
-the browsing experience.**
+frontend app concept to simplify and tune the browsing experience of the users**
 
 ## Codebase
 
@@ -44,11 +43,11 @@ the browsing experience.**
 
 Almost the entire codebase consists in **Javascript**
 
-Here is a list of all technologies used:
+Here is a list of technologies used:
 
 - **React**: Front-end library
 - **Redux**: Global state management
-- **Jest & Enzyme**: Testing suite
+- **Jest & React Testing Library**: Testing suite
 
 ### Folder structure
 
@@ -59,38 +58,34 @@ reddit-client/
 
 reddit-client/src
 ├── components     # Reusabble parts
+├── features       # Redux slices
+├── helpers        # Utilify functions
+├── hooks          # Custom hooks
 ├── pages          # Application views
-├── store          # Redux store initialization
-└── slices         # Redux reducers and actions declaration
+├── store          # Redux store configuration
+└── theme          # Material UI theme configuration
 ```
 
 ### Code Style
 
-We run Prettier on-commit, which means you can write code in whatever style you
-want and it will be automatically formatted according to the common style when
-you run `git commit`.
+Running `Prettier` on-commit, which means you can write code in whatever style
+you want and it will be automatically formatted according to the common style
+when you run `git commit`.
 
 ## Setup Process
 
 - Clone or download the repo
-- Open the folder and run `yarn` or `npm install`
-- Run application using `yarn start` or `npm run start`
+- Open the directory and run `yarn` to install
+- Run development application by using `yarn start`
 
 ## Acknowledgments
 
 The project is using
-[Reddit JSON Api](https://github.com/reddit-archive/reddit/wiki/JSON)
+[Reddit JSON Api](https://github.com/reddit-archive/reddit/wiki/JSON) to get the
+data from [Reddit](https://www.reddit.com/)
 
 The project was a task given by [Codecademy](https://www.codecademy.com) being a
 part of their full-stack engineer course path. The goal of the project was to
 showcase all previews skills and technologies learned until this point on the
-path:
-
-- HTML / CSS
-- JavaScript
-- React
-- Redux
-- Jest, Enzyme and Selenium
-- Git and Github Projects
-- Command line
-- Wireframes
+path (HTML / CSS, JavaScript, React, Redux, Jest, Enzyme and Selenium, Git and
+Github Projects, Command line, Wireframes)
