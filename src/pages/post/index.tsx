@@ -1,19 +1,24 @@
 import React from 'react';
-import Breadcrumbs from '@material-ui/core/Breadcrumbs';
-import Avatar from '@material-ui/core/Avatar';
-import Divider from '@material-ui/core/Divider';
-import HomeIcon from '@material-ui/icons/Home';
-import { withStyles } from '@material-ui/core/styles';
 import { Link, useParams } from 'react-router-dom';
-import { fd } from '../../helpers';
+import {
+  withStyles,
+  Tooltip,
+  Divider,
+  Avatar,
+  Breadcrumbs,
+  Button,
+} from '@material-ui/core';
+import HomeIcon from '@material-ui/icons/Home';
+import PublishIcon from '@material-ui/icons/Publish';
 import { Layout, Card } from '../../components';
-import usePostsWithComments from '../../hooks/usePostsWithComments';
+import { fd } from '../../helpers';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
+import usePostsWithComments from '../../hooks/usePostWithComments';
 
 type ParamsProps = {
+  id: string;
   subreddit: string;
   type: string;
-  id: string;
   name: string;
 };
 
@@ -22,9 +27,6 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   const postUrl = `https://www.reddit.com/r/${subreddit}/${type}/${id}/${name}/.json`;
 
   const { post, comments, isLoading }: any = usePostsWithComments(postUrl);
-
-  // console.log(post);
-  console.log(comments);
 
   if (isLoading) {
     return (
@@ -64,7 +66,23 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
 
         <header className={classes.header} aria-label="post head">
           <aside className={classes.info}>
-            {fd.shortenLargeNumber(post.ups, null)}
+            <Tooltip
+              placement="top"
+              title="Upvotes"
+              aria-label="upvotes count"
+              arrow
+            >
+              <Button
+                startIcon={<PublishIcon />}
+                size="small"
+                classes={{ root: classes.actionVote }}
+                disableRipple
+                disableFocusRipple
+              >
+                {fd.shortenLargeNumber(post.ups)}
+              </Button>
+            </Tooltip>
+
             <span>{post.upvote_ratio * 100}% ratio</span>
           </aside>
           <Divider orientation="vertical" flexItem />
@@ -72,16 +90,17 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           <div className={classes.top} aria-label="article head">
             <div className={classes.panel}>
               <Avatar alt={post.author} src={post.thumbnail} />
-              <span
+              <Link
                 aria-label="author name"
                 style={{
                   color:
                     post.author_flair_background_color &&
                     post.author_flair_background_color,
                 }}
+                to={`/profile/u/${post.author}`}
               >
                 {post.author}
-              </span>
+              </Link>
               <time aria-label="time posted">
                 {post?.created_utc && fd.getTimeFromNow(post.created_utc)}
               </time>
@@ -122,19 +141,21 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           )}
         </section>
 
-        <section aria-label="discussion list" className={classes.comments}>
-          <h2>Discussions</h2>
-          <ul>
-            {comments.map(({ data }: any) => (
-              <Card
-                component="li"
-                type="comment"
-                commentProps={{ data, postId: post.id }}
-                key={data.id}
-              />
-            ))}
-          </ul>
-        </section>
+        {comments && comments.length > 0 ? (
+          <section aria-label="discussion list" className={classes.comments}>
+            <h2>Discussions</h2>
+            <ul>
+              {comments.map(({ data }: any) => (
+                <Card
+                  component="li"
+                  type="comment"
+                  commentProps={{ data, postId: post.id }}
+                  key={data.id}
+                />
+              ))}
+            </ul>
+          </section>
+        ) : null}
       </article>
     </Layout>
   );

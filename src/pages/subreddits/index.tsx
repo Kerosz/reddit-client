@@ -3,10 +3,21 @@ import { Grid } from '@material-ui/core';
 import { Layout, Card } from '../../components';
 import useDataWithMeta from '../../hooks/useDataWithMeta';
 
+// TODO: Figure out how to make the material-ui grid fluid, so that it won't force the same height on the cards on the same row
 const Subreddits: React.FC = () => {
   const subredditUrl = `https://www.reddit.com/subreddits/.json`;
 
-  const { result: subreddits } = useDataWithMeta(subredditUrl);
+  const { result: subreddits, isLoading } = useDataWithMeta(subredditUrl);
+
+  if (isLoading) {
+    return (
+      <Layout>
+        <Grid container spacing={3}>
+          Loading...
+        </Grid>
+      </Layout>
+    );
+  }
 
   return (
     <Layout>

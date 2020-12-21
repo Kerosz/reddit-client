@@ -12,6 +12,7 @@ export type StyleProps = {
     header: string;
     body: string;
     info: string;
+    actionVote: string;
     panel: string;
     title: string;
     top: string;
@@ -53,10 +54,11 @@ const postStyles = (theme: Theme) =>
       },
     },
     info: {
-      width: '15%',
-      maxWidth: '60px',
       display: 'flex',
       flexDirection: 'column',
+      alignItems: 'center',
+      width: '15%',
+      maxWidth: '63px',
       fontWeight: 600,
       fontSize: 17,
       paddingTop: theme.spacing(1),
@@ -84,13 +86,26 @@ const postStyles = (theme: Theme) =>
         display: 'block',
       },
     },
+    actionVote: {
+      color: `${theme.palette.text.primary} !important`,
+      marginRight: theme.spacing(1.2),
+      cursor: 'default',
+      '& .MuiButton-startIcon': {
+        marginRight: theme.spacing(0.3),
+      },
+    },
     panel: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
-      '& > span': {
+      '& > a': {
+        color: 'inherit',
+        textDecoration: 'none',
         fontWeight: 500,
         marginLeft: theme.spacing(2),
+        '&:hover': {
+          textDecoration: 'underline',
+        },
       },
       '& > time': {
         fontSize: 13,

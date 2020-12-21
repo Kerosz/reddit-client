@@ -2,6 +2,7 @@
 import { render, RenderResult } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
+// TODO: Improve function types and usability
 const renderWithMemoryAndProps = (
   Component: React.ReactElement<any> | any,
   props: any,

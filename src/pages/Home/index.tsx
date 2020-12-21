@@ -11,11 +11,15 @@ const Home: React.FC = () => {
   // const path = window.location.pathname;
   const { category } = useParams<ParamsProps>();
 
-  const { result: postsData } = useDataWithMeta(
+  const { result: postsData, isLoading } = useDataWithMeta(
     category
       ? `https://www.reddit.com/${category}/.json`
       : 'https://www.reddit.com/.json',
   );
+
+  if (isLoading) {
+    return <Layout aside>Loading...</Layout>;
+  }
 
   return (
     <Layout aside>
