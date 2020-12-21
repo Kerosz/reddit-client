@@ -10,6 +10,7 @@ export type StyleProps = {
   classes: {
     post: string;
     header: string;
+    body: string;
     info: string;
     panel: string;
     title: string;
@@ -18,6 +19,7 @@ export type StyleProps = {
     underLine: string;
     description: string;
     preview: string;
+    comments: string;
   };
 };
 
@@ -29,7 +31,7 @@ const postStyles = (theme: Theme) =>
       borderRadius: 4,
       boxShadow: `1px 1px 3px ${theme.palette.action.disabledBackground}`,
     },
-    top: {
+    header: {
       display: 'flex',
       flexDirection: 'row',
       marginTop: theme.spacing(5),
@@ -42,7 +44,7 @@ const postStyles = (theme: Theme) =>
         paddingLeft: theme.spacing(3),
       },
     },
-    header: {
+    top: {
       width: '100%',
       marginLeft: theme.spacing(3.5),
       [theme.breakpoints.down('xs')]: {
@@ -117,10 +119,11 @@ const postStyles = (theme: Theme) =>
         marginBottom: theme.spacing(5),
       },
     },
+    body: { marginTop: theme.spacing(3) },
     description: {
       fontSize: 16,
       lineHeight: 1.5,
-      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(3),
       paddingLeft: theme.spacing(6),
       paddingRight: theme.spacing(1),
       [theme.breakpoints.down('sm')]: {
@@ -138,6 +141,24 @@ const postStyles = (theme: Theme) =>
       paddingTop: '64.25%',
       backgroundRepeat: 'no-repeat',
       backgroundSize: 'cover',
+    },
+    comments: {
+      marginTop: theme.spacing(7),
+      paddingLeft: theme.spacing(6),
+      [theme.breakpoints.down('sm')]: {
+        paddingLeft: theme.spacing(4.5),
+      },
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+        paddingLeft: theme.spacing(3),
+      },
+      '& > h2': {
+        fontSize: 20,
+        marginBottom: theme.spacing(2.5),
+      },
+      '& > ul': {
+        paddingLeft: theme.spacing(0),
+      },
     },
   });
 

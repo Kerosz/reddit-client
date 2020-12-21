@@ -1,29 +1,34 @@
 import React from 'react';
-import { withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-import Avatar from '@material-ui/core/Avatar';
-import Tooltip from '@material-ui/core/Tooltip';
-import Button from '@material-ui/core/Button';
+import { withStyles, Avatar, Tooltip, Button } from '@material-ui/core';
 import CommentIcon from '@material-ui/icons/Comment';
 import ShareIcon from '@material-ui/icons/Share';
 import LinkIcon from '@material-ui/icons/Link';
+import { copyToClipboard, fd } from '../../../helpers';
 import postCardStyles, { StyleProps } from './postCard.styles';
-import { copyToClipboard, fd } from '../../helpers';
 
-export type ListProps = {
-  data: {
+export type PostDataProps = {
+  component?: React.ElementType;
+  data?: {
     subreddit: string;
-    thumbnail: string;
     title: string;
-    selftext: string;
     author: string;
-    url: string;
-    ups: string;
+    selftext: string;
+    thumbnail: string;
     permalink: string;
+    url: string;
+    ups: number;
   };
 };
 
-const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
+const PostCard: React.FC<StyleProps & PostDataProps> = ({
+  component: Component,
+  classes,
+  data,
+}): React.ReactElement | null => {
+  if (!Component) throw new Error('Component was not specified');
+  if (!data) return null;
+
   const checkForImage = (value: string): boolean => {
     const regex = /\.(gif|jpg|jpeg|tiff|png)$/i;
     return regex.test(value);
@@ -54,9 +59,9 @@ const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
   }
 
   return (
-    <article className={classes.root} aria-label="reddit post">
+    <Component className={classes.root} aria-label="reddit post">
       <div className={classes.post}>
-        <header className={classes.header}>
+        <header className={classes.header} aria-label="post head">
           <Avatar alt={data.subreddit} src={data.thumbnail} />
 
           <span data-testid="subreddit">
@@ -70,28 +75,26 @@ const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
             <Link to={`/profile/u/${data.author}`}>u/{data.author}</Link>
           </p>
         </header>
-        <div className={classes.content}>
+        <section className={classes.content} aria-label="post body">
           <div className={classes.details}>
             <Link to={`/post${data.permalink}`}>
-              <div>
-                <h2 data-testid="title">{data.title}</h2>
-                {data.selftext && (
-                  <p data-testid="description">
-                    {`${
-                      data.selftext.length > 200
-                        ? `${data.selftext.slice(0, 200)}...`
-                        : data.selftext
-                    }`}
-                  </p>
-                )}
-              </div>
+              <h2 data-testid="title">{data.title}</h2>
+              {data.selftext && (
+                <p data-testid="description">
+                  {`${
+                    data.selftext.length > 200
+                      ? `${data.selftext.slice(0, 200)}...`
+                      : data.selftext
+                  }`}
+                </p>
+              )}
             </Link>
             <div className={classes.actions}>
               <Button
                 aria-label="comments"
                 startIcon={<CommentIcon fontSize="small" />}
                 component={Link}
-                to={`post${data.permalink}`}
+                to={`/post${data.permalink}`}
               >
                 Comments
               </Button>
@@ -99,7 +102,7 @@ const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
                 aria-label="details"
                 startIcon={<LinkIcon fontSize="small" />}
                 component={Link}
-                to={`post${data.permalink}`}
+                to={`/post${data.permalink}`}
               >
                 Details
               </Button>
@@ -117,12 +120,12 @@ const PostCard: React.FC<StyleProps & ListProps> = ({ classes, data }) => {
           <div className={classes.preview} data-testid="preview">
             {preview}
           </div>
-        </div>
+        </section>
       </div>
       <div className={classes.ratings}>
         <h2>{fd.shortenLargeNumber(data.ups, null)}</h2>
       </div>
-    </article>
+    </Component>
   );
 };
 
