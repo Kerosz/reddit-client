@@ -37,12 +37,17 @@ const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
   // TODO: needs to be updated with env variable later on
   const clipboardUrl = `https://www.reddit.com${data.permalink}`;
 
+  let authorDisplay;
+  if (data.author !== '[deleted]') {
+    authorDisplay = <Link to={`/profile/u/${data.author}`}>{data.author}</Link>;
+  } else {
+    authorDisplay = <span data-testid="author">{data.author}</span>;
+  }
+
   return (
     <Component className={classes.root} id={data.id}>
       <div className={classes.header} aria-label="comment head">
-        <Link to={`/profile/u/${data.author}`} data-testid="author">
-          {data.author}
-        </Link>
+        {authorDisplay}
         <time>{timeSinceCreated}</time>
         {data.edited && (
           <time style={{ fontStyle: 'italic' }}>

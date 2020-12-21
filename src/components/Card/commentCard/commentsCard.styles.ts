@@ -32,6 +32,11 @@ const commentsCardStyles = (theme: Theme) =>
           textDecoration: 'underline',
         },
       },
+      '& > span': {
+        color: theme.palette.text.disabled,
+        fontStyle: 'italic',
+        cursor: 'not-allowed',
+      },
       '& > time': {
         fontSize: 12,
         marginLeft: theme.spacing(1),
@@ -48,6 +53,9 @@ const commentsCardStyles = (theme: Theme) =>
     actionVote: {
       color: `${theme.palette.text.primary} !important`,
       marginRight: theme.spacing(1.2),
+      '& .MuiButton-startIcon': {
+        marginRight: theme.spacing(0.6),
+      },
     },
   });
 

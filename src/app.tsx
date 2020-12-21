@@ -5,7 +5,7 @@ import Home from './pages/home';
 import Post from './pages/post';
 import Subreddit from './pages/subreddit';
 import Subreddits from './pages/subreddits';
-import User from './pages/user';
+import User from './pages/profile';
 
 const App: React.FC = () => (
   <ThemeProviderWithMode>
