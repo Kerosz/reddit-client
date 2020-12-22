@@ -7,6 +7,7 @@ import Subreddit from './pages/subreddit';
 import Subreddits from './pages/subreddits';
 import User from './pages/profile';
 
+// TODO: Improve routing paths and add a routs file
 const App: React.FC = () => (
   <ThemeProviderWithMode>
     <Router>

@@ -14,16 +14,18 @@ const User: React.FC = () => {
 
   const { posts: userData, isLoading } = useDataWithComments(userUrl);
 
+  console.log(userData);
+
   if (isLoading) {
     return (
-      <Layout aside sidebarProps={{ type: 'post' }}>
+      <Layout aside sidebarProps={{ type: 'user' }}>
         Loading ...
       </Layout>
     );
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'post' }}>
+    <Layout aside sidebarProps={{ type: 'user' }}>
       {userData.map((userPost: any) => (
         <Card postProps={{ data: userPost }} key={userPost.id} />
       ))}

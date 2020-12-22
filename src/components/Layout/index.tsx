@@ -5,23 +5,21 @@ import layoutStyles, { StyleProps } from './layout.styles';
 
 import Header from '../Header';
 import Footer from '../Footer';
-import Sidebar from '../Sidebar';
+import Sidebar, { Props as SidebarProps } from '../Sidebar';
 
 type Props = {
-  children?: React.ReactNode;
-  aside?: true | false;
-  sidebarProps?: {
-    type?: 'main' | 'post' | null;
-  };
+  children: React.ReactNode;
   width?: 'lg' | 'xs' | 'sm' | 'md' | 'xl' | undefined;
+  aside?: true | false;
+  sidebarProps?: SidebarProps;
 };
 
 const Layout: React.FC<Props & StyleProps> = ({
   children,
-  classes,
+  width = 'lg',
   aside,
   sidebarProps,
-  width = 'lg',
+  classes,
 }) => (
   <>
     <Header />

@@ -16,14 +16,14 @@ const Subreddit: React.FC = () => {
 
   if (isLoading) {
     return (
-      <Layout aside sidebarProps={{ type: 'post' }}>
+      <Layout aside sidebarProps={{ type: 'subreddit' }}>
         Loading...
       </Layout>
     );
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'post' }}>
+    <Layout aside sidebarProps={{ type: 'subreddit' }}>
       {posts?.map((post: any) => (
         <Card postProps={{ data: post }} key={post.id} />
       ))}

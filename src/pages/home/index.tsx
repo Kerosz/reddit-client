@@ -8,7 +8,6 @@ type ParamsProps = {
 };
 
 const Home: React.FC = () => {
-  // const path = window.location.pathname;
   const { category } = useParams<ParamsProps>();
 
   const { result: postsData, isLoading } = useDataWithMeta(
