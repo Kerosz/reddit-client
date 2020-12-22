@@ -12,9 +12,7 @@ const User: React.FC = () => {
   const { user } = useParams<ParamsProps>();
   const userUrl = `https://www.reddit.com/user/${user}/.json`;
 
-  const { posts: userData, isLoading } = useDataWithComments(userUrl);
-
-  console.log(userData);
+  const { posts: userPosts, isLoading } = useDataWithComments(userUrl);
 
   if (isLoading) {
     return (
@@ -25,8 +23,8 @@ const User: React.FC = () => {
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'user' }}>
-      {userData.map((userPost: any) => (
+    <Layout aside sidebarProps={{ type: 'base' }}>
+      {userPosts.map((userPost: any) => (
         <Card postProps={{ data: userPost }} key={userPost.id} />
       ))}
     </Layout>

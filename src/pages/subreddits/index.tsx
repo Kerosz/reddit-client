@@ -9,6 +9,8 @@ const Subreddits: React.FC = () => {
 
   const { result: subreddits, isLoading } = useDataWithMeta(subredditUrl);
 
+  console.log(subreddits);
+
   if (isLoading) {
     return (
       <Layout>
