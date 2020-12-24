@@ -8,7 +8,7 @@ interface IResponse extends TPage {
 }
 
 export interface IPosts extends IFetch {
-  profile: object;
+  profile: object | any;
   data: {
     posts: object[];
     comments: object[];

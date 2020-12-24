@@ -43,4 +43,13 @@ const getTimeFromNow = (
   return dayjs.unix(Number(value)).fromNow(option);
 };
 
-export default { shortenLargeNumber, getTimeFromNow, addNumberSeparator };
+const getCreatedTime = (value: number, options: string = 'MMMM D, YYYY') => {
+  return dayjs.unix(value).format(options);
+};
+
+export default {
+  shortenLargeNumber,
+  getTimeFromNow,
+  getCreatedTime,
+  addNumberSeparator,
+};

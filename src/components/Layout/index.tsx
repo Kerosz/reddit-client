@@ -5,7 +5,7 @@ import layoutStyles, { StyleProps } from './layout.styles';
 
 import Header from '../Header';
 import Footer from '../Footer';
-import Sidebar, { Props as SidebarProps } from '../Sidebar';
+import Sidebar, { TProps as SidebarProps } from '../Sidebar';
 
 type Props = {
   children: React.ReactNode;

@@ -3,7 +3,7 @@ import { IFetch, TPage } from '../index';
 import API from '../../lib/API';
 
 export interface IPosts extends IFetch {
-  info: object | null;
+  info: object | any;
   posts: object[];
 }
 

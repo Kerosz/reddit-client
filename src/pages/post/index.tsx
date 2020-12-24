@@ -43,7 +43,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
 
   if (isLoading) {
     return (
-      <Layout aside sidebarProps={{ type: 'base' }}>
+      <Layout aside>
         <article className={classes.post} aria-label="post content">
           Loading...
         </article>
@@ -52,7 +52,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'base' }}>
+    <Layout aside>
       <article className={classes.post} aria-label="post content">
         <Breadcrumbs aria-label="breadcrumbs" component="nav">
           <StyledBreadcrumb

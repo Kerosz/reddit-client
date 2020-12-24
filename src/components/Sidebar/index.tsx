@@ -1,26 +1,27 @@
 import React from 'react';
 import SidebarBase from './sidebarBase';
-import Panel from './panel';
+import Subreddit, { TSidebarData } from './subreddit';
+import User, { TUserData } from './user';
 
-export type Props = {
-  type?: 'base' | 'user' | 'subreddit' | null;
-  data?: any;
+export type TProps = {
+  type?: 'filter' | 'user' | 'subreddit' | null;
+  data?: TSidebarData & TUserData;
 };
 
-const Sidebar: React.FC<Props> = ({ type }) => {
-  if (type === 'subreddit') {
-    return <SidebarBase content={<Panel />} />;
+const Sidebar: React.FC<TProps> = ({ type, data }) => {
+  if (data && type === 'subreddit') {
+    return <Subreddit data={data} />;
   }
 
-  if (type === 'user') {
-    return <SidebarBase content={<Panel />} />;
+  if (data && type === 'user') {
+    return <User data={data} />;
   }
 
-  if (type === 'base') {
-    return <SidebarBase />;
+  if (type === 'filter') {
+    return <SidebarBase filter />;
   }
 
-  return <SidebarBase filter />;
+  return <SidebarBase />;
 };
 
 export default Sidebar;
