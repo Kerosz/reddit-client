@@ -10,6 +10,8 @@ const Subreddits: React.FC = () => {
     subreddits: { subreddits, isLoading },
   } = useFetch({ action: getSubreddits });
 
+  console.log(subreddits);
+
   if (isLoading) {
     return (
       <Layout>

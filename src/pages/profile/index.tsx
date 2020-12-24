@@ -23,7 +23,7 @@ const User: React.FC = () => {
 
   if (isLoading) {
     return (
-      <Layout aside sidebarProps={{ type: 'post' }}>
+      <Layout aside sidebarProps={{ type: 'user' }}>
         Loading ...
       </Layout>
     );

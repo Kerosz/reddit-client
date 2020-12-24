@@ -26,7 +26,7 @@ const Subreddit: React.FC = () => {
 
   if (isLoading) {
     return (
-      <Layout aside sidebarProps={{ type: 'post' }}>
+      <Layout aside sidebarProps={{ type: 'subreddit' }}>
         Loading...
       </Layout>
     );

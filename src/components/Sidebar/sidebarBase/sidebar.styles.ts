@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { createStyles, Theme } from '@material-ui/core/styles';
 
 export type StyleProps = {
   classes: {
     sidebar: string;
     listText: string;
-    card: string;
-    title: string;
     ad: string;
     listItem: string;
     link: string;
@@ -30,25 +27,6 @@ const sidebarStyles = (theme: Theme) =>
     },
     listText: {
       fontWeight: 500,
-    },
-    card: {
-      maxWidth: 'inherit',
-      marginTop: 20,
-      backgroundColor: theme.palette.background.paper,
-      padding: '10px 10px 0',
-      borderRadius: 5,
-      '&:first-of-type': {
-        marginTop: 0,
-      },
-    },
-    title: {
-      fontSize: 14,
-      fontWeight: 'bold',
-      textTransform: 'uppercase',
-      color: theme.palette.text.disabled,
-      paddingLeft: 10,
-      paddingBottom: 6,
-      margin: 0,
     },
     ad: {
       marginTop: 5,
