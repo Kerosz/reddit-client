@@ -16,6 +16,7 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
+import random from 'lodash/random';
 import Panel from '../panel';
 import sidebarStyles, { StyleProps } from './sidebar.styles';
 import { fd } from '../../../helpers';
@@ -37,6 +38,7 @@ type Option = {
 };
 
 // TODO: Change the data type from any to a more typed one
+
 // type SubredditProps = {
 //   id: string;
 //   display_name: string;
@@ -57,6 +59,8 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
   const {
     subreddits: { subreddits, isLoading },
   } = useFetch({ action: getSubreddits });
+
+  const randomSlice = random(0, 20);
 
   return (
     <aside
@@ -89,24 +93,26 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
             {isLoading ? (
               <p>Loading...</p>
             ) : (
-              subreddits.slice(0, 5).map((data: any) => (
-                <ListItem
-                  component={Link}
-                  button
-                  key={data.id}
-                  to={`/subreddit/r/${data.display_name}`}
-                >
-                  <ListItemAvatar>
-                    <Avatar alt={data.display_name} src={data.icon_img} />
-                  </ListItemAvatar>
-                  <ListItemText
-                    primary={`r/${data.display_name}`}
-                    secondary={`${fd.addNumberSeparator(
-                      data.subscribers,
-                    )} subscribers`}
-                  />
-                </ListItem>
-              ))
+              subreddits
+                .slice(randomSlice, randomSlice + 5)
+                .map((data: any) => (
+                  <ListItem
+                    component={Link}
+                    button
+                    key={data.id}
+                    to={`/subreddit/r/${data.display_name}`}
+                  >
+                    <ListItemAvatar>
+                      <Avatar alt={data.display_name} src={data.icon_img} />
+                    </ListItemAvatar>
+                    <ListItemText
+                      primary={`r/${data.display_name}`}
+                      secondary={`${fd.addNumberSeparator(
+                        data.subscribers,
+                      )} subscribers`}
+                    />
+                  </ListItem>
+                ))
             )}
           </List>
         }

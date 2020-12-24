@@ -15,11 +15,15 @@ const Home: React.FC = () => {
   const { isLoading, posts: postsData } = posts;
 
   if (isLoading) {
-    return <Layout aside>Loading...</Layout>;
+    return (
+      <Layout aside sidebarProps={{ type: 'filter' }}>
+        Loading...
+      </Layout>
+    );
   }
 
   return (
-    <Layout aside>
+    <Layout aside sidebarProps={{ type: 'filter' }}>
       {postsData?.map((post: any) => (
         <Card postProps={{ data: post }} key={post.id} />
       ))}

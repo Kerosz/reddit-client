@@ -8,6 +8,7 @@ type Props = {
   component?: React.ElementType;
   title?: AcceptType;
   content?: AcceptType;
+  divider?: boolean;
   action?: AcceptType;
 };
 
@@ -15,6 +16,7 @@ const Panel: React.FC<Props & StyleProps> = ({
   component: Component = 'div',
   title = 'Panel Title',
   content,
+  divider = true,
   action,
   classes,
   ...rest
@@ -26,7 +28,7 @@ const Panel: React.FC<Props & StyleProps> = ({
       <h3 className={classes.title}>{title}</h3>
       <Divider />
       {content}
-      <Divider />
+      {divider && <Divider />}
       <CardActions>{action}</CardActions>
     </Component>
   );
