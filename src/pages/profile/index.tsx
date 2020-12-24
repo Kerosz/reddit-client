@@ -19,8 +19,6 @@ const User: React.FC = () => {
     user: { data, isLoading },
   } = useFetch({ action: getUserPosts, params: userName });
 
-  console.log(profile);
-
   if (isLoading) {
     return (
       <Layout aside sidebarProps={{ type: 'user' }}>
@@ -30,7 +28,7 @@ const User: React.FC = () => {
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'post' }}>
+    <Layout aside sidebarProps={{ type: 'user', data: profile }}>
       {data.posts.map((userPost: any) => (
         <Card postProps={{ data: userPost }} key={userPost.id} />
       ))}

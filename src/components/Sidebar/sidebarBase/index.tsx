@@ -18,8 +18,9 @@ import EqualizerIcon from '@material-ui/icons/Equalizer';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import Panel from '../panel';
 import sidebarStyles, { StyleProps } from './sidebar.styles';
-import useDataWithMeta from '../../../hooks/useDataWithMeta';
 import { fd } from '../../../helpers';
+import { getSubreddits } from '../../../features/subreddits/subredditsSlice';
+import useFetch from '../../../hooks/useFetch';
 
 const filterOptions: Option[] = [
   { name: 'all', path: '/', icon: <DynamicFeedIcon /> },
@@ -35,12 +36,13 @@ type Option = {
   icon: JSX.Element;
 };
 
-type SubredditProps = {
-  id: string;
-  display_name: string;
-  icon_img: string;
-  subscribers: number;
-};
+// TODO: Change the data type from any to a more typed one
+// type SubredditProps = {
+//   id: string;
+//   display_name: string;
+//   icon_img: string;
+//   subscribers: number;
+// };
 
 type Props = {
   filter?: true | false | null;
@@ -52,9 +54,9 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
   content,
   classes,
 }) => {
-  const subredditUrl = `https://www.reddit.com/subreddits/.json`;
-
-  const { result: subreddits, isLoading } = useDataWithMeta(subredditUrl);
+  const {
+    subreddits: { subreddits, isLoading },
+  } = useFetch({ action: getSubreddits });
 
   return (
     <aside
@@ -87,7 +89,7 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
             {isLoading ? (
               <p>Loading...</p>
             ) : (
-              subreddits.slice(0, 5).map((data: SubredditProps) => (
+              subreddits.slice(0, 5).map((data: any) => (
                 <ListItem
                   component={Link}
                   button

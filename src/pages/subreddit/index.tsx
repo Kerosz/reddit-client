@@ -22,8 +22,6 @@ const Subreddit: React.FC = () => {
     subreddit: { posts, isLoading },
   } = useFetch({ action: getSubredditPosts, params: subredditName });
 
-  console.log(info);
-
   if (isLoading) {
     return (
       <Layout aside sidebarProps={{ type: 'subreddit' }}>
@@ -33,7 +31,7 @@ const Subreddit: React.FC = () => {
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'post' }}>
+    <Layout aside sidebarProps={{ type: 'subreddit', data: info }}>
       {posts.map((post: any) => (
         <Card postProps={{ data: post }} key={post.id} />
       ))}

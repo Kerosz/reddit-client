@@ -7,19 +7,18 @@ export type Props = {
   data?: any;
 };
 
-const Sidebar: React.FC<Props> = ({ type, data }) => {
-  if (data && type === 'subreddit') {
+const Sidebar: React.FC<Props> = ({ type }) => {
+  if (type === 'subreddit') {
     return <SidebarBase content={<Panel />} />;
   }
 
-  if (data && type === 'user') {
+  if (type === 'user') {
     return <SidebarBase content={<Panel />} />;
   }
 
   if (type === 'base') {
     return <SidebarBase />;
   }
-
 
   return <SidebarBase filter />;
 };
