@@ -1,18 +1,28 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Layout, Card } from '../../components';
-
-import useDataWithMeta from '../../hooks/useDataWithMeta';
+import {
+  getSubredditByName,
+  getSubredditPosts,
+} from '../../features/subreddit/subredditSlice';
+import useFetch from '../../hooks/useFetch';
 
 type ParamsProps = {
-  subreddit: string;
+  subredditName: string;
 };
 
 const Subreddit: React.FC = () => {
-  const { subreddit } = useParams<ParamsProps>();
-  const subredditUrl = `https://www.reddit.com/r/${subreddit}/.json`;
+  const { subredditName } = useParams<ParamsProps>();
 
-  const { result: posts, isLoading } = useDataWithMeta(subredditUrl);
+  const {
+    subreddit: { info },
+  } = useFetch({ action: getSubredditByName, params: subredditName });
+
+  const {
+    subreddit: { posts, isLoading },
+  } = useFetch({ action: getSubredditPosts, params: subredditName });
+
+  console.log(info);
 
   if (isLoading) {
     return (
@@ -24,7 +34,7 @@ const Subreddit: React.FC = () => {
 
   return (
     <Layout aside sidebarProps={{ type: 'post' }}>
-      {posts?.map((post: any) => (
+      {posts.map((post: any) => (
         <Card postProps={{ data: post }} key={post.id} />
       ))}
     </Layout>

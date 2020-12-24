@@ -14,12 +14,12 @@ const App: React.FC = () => (
         <Route exact path={['/', '/filter/:category']} component={Home} />
         <Route
           exact
-          path="/post/r/:subreddit/:type/:id/:name"
+          path="/post/r/:subreddit/comments/:id/:name"
           component={Post}
         />
-        <Route exact path="/subreddit/r/:subreddit" component={Subreddit} />
+        <Route exact path="/subreddit/r/:subredditName" component={Subreddit} />
         <Route exact path="/subreddits/" component={Subreddits} />
-        <Route exact path="/profile/u/:user" component={User} />
+        <Route exact path="/profile/u/:userName" component={User} />
       </Switch>
     </Router>
   </ThemeProviderWithMode>

@@ -13,11 +13,10 @@ import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import CardActions from '@material-ui/core/CardActions';
 import Button from '@material-ui/core/Button';
 import Divider from '@material-ui/core/Divider';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
+// import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+// import Avatar from '@material-ui/core/Avatar';
 import { capitalize } from 'lodash';
 import sidebarStyles, { StyleProps } from './sidebar.styles';
-import useDataWithMeta from '../../hooks/useDataWithMeta';
 
 type Category = {
   name: string;
@@ -30,8 +29,6 @@ type Props = {
 };
 
 const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
-  const subredditUrl = `https://www.reddit.com/subreddits/.json`;
-
   const categories: Category[] = [
     { name: 'all', path: '/', icon: <DynamicFeedIcon /> },
     { name: 'hot', path: '/filter/hot', icon: <WhatshotIcon /> },
@@ -39,8 +36,6 @@ const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
     { name: 'rising', path: '/filter/rising', icon: <TrendingUpIcon /> },
     { name: 'top', path: '/filter/top', icon: <EqualizerIcon /> },
   ];
-
-  const { result: subreddits } = useDataWithMeta(subredditUrl);
 
   if (type === 'post') {
     return (
@@ -51,7 +46,7 @@ const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
         <div className={classes.card}>
           <h3 className={classes.title}>Featured Subreddits</h3>
           <Divider />
-          <List>
+          {/* <List>
             {subreddits?.slice(0, 5).map(
               (data: any): JSX.Element => {
                 const subCount = String(data.subscribers).replace(
@@ -77,7 +72,7 @@ const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
                 );
               },
             )}
-          </List>
+          </List> */}
           <Divider />
           <CardActions>
             <Button component={Link} to="/subreddits" size="small">
@@ -127,7 +122,7 @@ const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
       <div className={classes.card}>
         <h3 className={classes.title}>Featured Subreddits</h3>
         <Divider />
-        <List>
+        {/* <List>
           {subreddits?.slice(0, 5).map(
             (data: any): JSX.Element => {
               const subCount = String(data.subscribers).replace(
@@ -153,7 +148,7 @@ const Sidebar: React.FC<Props & StyleProps> = ({ type, classes }) => {
               );
             },
           )}
-        </List>
+        </List> */}
         <Divider />
         <CardActions>
           <Button component={Link} to="/subreddits" size="small">
