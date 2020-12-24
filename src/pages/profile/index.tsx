@@ -1,18 +1,25 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Layout, Card } from '../../components';
-
-import useDataWithComments from '../../hooks/useDataWithComments';
+import useFetch from '../../hooks/useFetch';
+import { getUserByName, getUserPosts } from '../../features/user/userSlice';
 
 type ParamsProps = {
-  user: string;
+  userName: string;
 };
 
 const User: React.FC = () => {
-  const { user } = useParams<ParamsProps>();
-  const userUrl = `https://www.reddit.com/user/${user}/.json`;
+  const { userName } = useParams<ParamsProps>();
 
-  const { posts: userPosts, isLoading } = useDataWithComments(userUrl);
+  const {
+    user: { profile },
+  } = useFetch({ action: getUserByName, params: userName });
+
+  const {
+    user: { data, isLoading },
+  } = useFetch({ action: getUserPosts, params: userName });
+
+  console.log(profile);
 
   if (isLoading) {
     return (
@@ -23,8 +30,8 @@ const User: React.FC = () => {
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'base' }}>
-      {userPosts.map((userPost: any) => (
+    <Layout aside sidebarProps={{ type: 'post' }}>
+      {data.posts.map((userPost: any) => (
         <Card postProps={{ data: userPost }} key={userPost.id} />
       ))}
     </Layout>

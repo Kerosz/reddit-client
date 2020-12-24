@@ -13,20 +13,33 @@ import PublishIcon from '@material-ui/icons/Publish';
 import { Layout, Card } from '../../components';
 import { fd } from '../../helpers';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
-import usePostsWithComments from '../../hooks/usePostWithComments';
+import useFetch from '../../hooks/useFetch';
+import { getPost } from '../../features/post/postSlice';
 
 type ParamsProps = {
   id: string;
   subreddit: string;
-  type: string;
-  name: string;
+};
+
+type TState = {
+  data: {
+    post: any;
+    comments: any;
+  };
+  isLoading: boolean;
 };
 
 const Post: React.FC<StyleProps> = ({ classes }) => {
-  const { subreddit, type, id, name } = useParams<ParamsProps>();
-  const postUrl = `https://www.reddit.com/r/${subreddit}/${type}/${id}/${name}/.json`;
+  const { subreddit, id } = useParams<ParamsProps>();
 
-  const { post, comments, isLoading }: any = usePostsWithComments(postUrl);
+  const { post: postState } = useFetch({
+    action: getPost,
+    params: [subreddit, id],
+  });
+  const {
+    data: { post, comments },
+    isLoading,
+  }: TState = postState;
 
   if (isLoading) {
     return (
@@ -145,12 +158,12 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           <section aria-label="discussion list" className={classes.comments}>
             <h2>Discussions</h2>
             <ul>
-              {comments.map(({ data }: any) => (
+              {comments.map((comment: any) => (
                 <Card
                   component="li"
                   type="comment"
-                  commentProps={{ data, postId: post.id }}
-                  key={data.id}
+                  commentProps={{ data: comment, postId: post.id }}
+                  key={comment.id}
                 />
               ))}
             </ul>

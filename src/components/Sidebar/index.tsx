@@ -20,6 +20,7 @@ const Sidebar: React.FC<Props> = ({ type, data }) => {
     return <SidebarBase />;
   }
 
+
   return <SidebarBase filter />;
 };
 
