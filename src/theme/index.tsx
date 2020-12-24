@@ -6,7 +6,8 @@ import {
   CssBaseline,
   Theme,
 } from '@material-ui/core';
-import { useSelector, RootStateOrAny } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/rootReducer';
 import darkTheme from './dark';
 import lightTheme from './light';
 
@@ -39,7 +40,7 @@ type Props = {
 
 // TODO: Find out a way to make themeMode work without having to pass the object type
 const themeConstructor = (): Theme => {
-  const { lightMode } = useSelector((state: RootStateOrAny) => state.theme);
+  const { lightMode } = useSelector((state: RootState) => state.theme);
   const themeBasedOnMode: object = lightMode ? lightTheme : darkTheme;
 
   return createMuiTheme({
