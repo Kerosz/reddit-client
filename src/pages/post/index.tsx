@@ -14,6 +14,7 @@ import {
 import HomeIcon from '@material-ui/icons/Home';
 import PublishIcon from '@material-ui/icons/Publish';
 import { Layout, Card } from '../../components';
+import Skeleton from '../../components/Skeleton';
 import { fd } from '../../helpers';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
 import useFetch from '../../hooks/useFetch';
@@ -48,7 +49,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
     return (
       <Layout aside>
         <article className={classes.post} aria-label="post content">
-          Loading...
+          <Skeleton type="post" />
         </article>
       </Layout>
     );

@@ -16,12 +16,12 @@ import DescriptionIcon from '@material-ui/icons/Description';
 import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
-import random from 'lodash/random';
 import Panel from '../panel';
 import sidebarStyles, { StyleProps } from './sidebar.styles';
 import { fd } from '../../../helpers';
 import { getSubreddits } from '../../../features/subreddits/subredditsSlice';
 import useFetch from '../../../hooks/useFetch';
+import Skeleton from '../../Skeleton';
 
 const filterOptions: Option[] = [
   { name: 'all', path: '/', icon: <DynamicFeedIcon /> },
@@ -60,8 +60,6 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
     subreddits: { subreddits, isLoading },
   } = useFetch({ action: getSubreddits });
 
-  const randomSlice = random(0, 20);
-
   return (
     <aside
       className={classes.sidebar}
@@ -90,12 +88,9 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
         title="Featured Subreddits"
         content={
           <List>
-            {isLoading ? (
-              <p>Loading...</p>
-            ) : (
-              subreddits
-                .slice(randomSlice, randomSlice + 5)
-                .map((data: any) => (
+            {isLoading
+              ? Array.from(new Array(8)).map(() => <Skeleton type="sidebar" />)
+              : subreddits.slice(1, 9).map((data: any) => (
                   <ListItem
                     component={Link}
                     button
@@ -112,8 +107,7 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
                       )} subscribers`}
                     />
                   </ListItem>
-                ))
-            )}
+                ))}
           </List>
         }
         action={
