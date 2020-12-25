@@ -32,7 +32,19 @@ const Header: React.FC<StyleProps> = ({ classes }) => {
   const dispatch = useDispatch();
 
   const handleModeSwitch = () => {
-    dispatch(updateMode(!lightMode));
+    const prev = localStorage.getItem('material-ui-theme');
+
+    if (prev) {
+      const newMode = JSON.parse(prev);
+
+      dispatch(updateMode(!newMode));
+      localStorage.setItem('material-ui-theme', JSON.stringify(!newMode));
+    } else {
+      const newMode = !lightMode;
+
+      localStorage.setItem('material-ui-theme', JSON.stringify(newMode));
+      dispatch(updateMode(newMode));
+    }
   };
 
   return (

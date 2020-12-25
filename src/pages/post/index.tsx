@@ -1,4 +1,7 @@
+/* eslint-disable react/no-children-prop */
 import React from 'react';
+import ReactMarkdown from 'react-markdown';
+import gfm from 'remark-gfm';
 import { Link, useParams } from 'react-router-dom';
 import {
   withStyles,
@@ -132,7 +135,9 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
 
         <section aria-label="post body" className={classes.body}>
           {post.selftext && (
-            <p className={classes.description}>{post.selftext}</p>
+            <p className={classes.description}>
+              <ReactMarkdown plugins={[gfm]} children={post.selftext} />
+            </p>
           )}
 
           {post.post_hint === 'image' && (

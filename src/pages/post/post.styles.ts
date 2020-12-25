@@ -154,15 +154,20 @@ const postStyles = (theme: Theme) =>
       [theme.breakpoints.down('xs')]: {
         paddingLeft: theme.spacing(3),
       },
+      '& a': {
+        color: theme.palette.text.secondary,
+        textDecoration: 'none',
+        fontWeight: 600,
+        '&:hover': {
+          textDecoration: 'underline',
+        },
+      },
+      '& p': {
+        margin: 0,
+        marginBottom: theme.spacing(2),
+      },
     },
     preview: {
-      // display: 'block',
-      // width: '100%',
-      // overflow: 'hidden',
-      // height: 0,
-      // paddingTop: '100%',
-      // backgroundRepeat: 'no-repeat',
-      // backgroundSize: 'cover',
       width: '100%',
     },
     comments: {
