@@ -4,7 +4,10 @@ type ThemeState = {
   lightMode: true | false;
 };
 
-const initialState: ThemeState = { lightMode: true };
+const storageThemeMode = localStorage.getItem('material-ui-theme');
+const defautlTheme = storageThemeMode ? JSON.parse(storageThemeMode) : true;
+
+const initialState: ThemeState = { lightMode: defautlTheme };
 
 const themeSlice = createSlice({
   name: 'theme',

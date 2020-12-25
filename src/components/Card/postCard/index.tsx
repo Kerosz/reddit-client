@@ -4,6 +4,7 @@ import { withStyles, Avatar, Tooltip, Button, Chip } from '@material-ui/core';
 import CommentIcon from '@material-ui/icons/Comment';
 import ShareIcon from '@material-ui/icons/Share';
 import LinkIcon from '@material-ui/icons/Link';
+import truncate from 'lodash/truncate';
 import { copyToClipboard, fd, getSrcFromStr } from '../../../helpers';
 import postCardStyles, { StyleProps } from './postCard.styles';
 
@@ -129,11 +130,7 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
               <h2 data-testid="title">{data.title}</h2>
               {data.selftext && (
                 <p data-testid="description">
-                  {`${
-                    data.selftext.length > 200
-                      ? `${data.selftext.slice(0, 200)}...`
-                      : data.selftext
-                  }`}
+                  {truncate(data.selftext, { length: 200 })}
                 </p>
               )}
             </Link>
