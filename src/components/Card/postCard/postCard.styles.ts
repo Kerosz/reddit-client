@@ -102,6 +102,11 @@ const postCardStyles = (theme: Theme) =>
       },
     },
     preview: {
+      display: 'flex',
+      '& > a': {
+        margin: '10px 70px',
+        alignSelf: 'center',
+      },
       '& > img': {
         width: 256,
         height: 144,
@@ -112,7 +117,7 @@ const postCardStyles = (theme: Theme) =>
           height: 81,
         },
       },
-      '& > iframe': {
+      '& > iframe, & > video': {
         width: '256px',
         height: '144px',
         marginLeft: 10,

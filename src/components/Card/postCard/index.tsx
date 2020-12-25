@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { withStyles, Avatar, Tooltip, Button } from '@material-ui/core';
+import { withStyles, Avatar, Tooltip, Button, Chip } from '@material-ui/core';
 import CommentIcon from '@material-ui/icons/Comment';
 import ShareIcon from '@material-ui/icons/Share';
 import LinkIcon from '@material-ui/icons/Link';
-import { copyToClipboard, fd } from '../../../helpers';
+import { copyToClipboard, fd, getSrcFromStr } from '../../../helpers';
 import postCardStyles, { StyleProps } from './postCard.styles';
 
 export type PostDataProps = {
@@ -14,8 +14,19 @@ export type PostDataProps = {
     title: string;
     author: string;
     selftext: string;
+    domain: string;
+    media: {
+      type: string;
+    } | null;
+    media_embed: {
+      content: string;
+    };
+    secure_media_embed: {
+      media_domain_url: string;
+    };
     thumbnail: string;
     permalink: string;
+    post_hint: string;
     url: string;
     ups: number;
   };
@@ -29,29 +40,66 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
   if (!Component) throw new Error('Component was not specified');
   if (!data) return null;
 
-  const checkForImage = (value: string): boolean => {
-    const regex = /\.(gif|jpg|jpeg|tiff|png)$/i;
-    return regex.test(value);
+  const isImage = () => /bmp|webp|png|jpg|jpeg|gif$/.test(data.url);
+  const isVideo = () => /mp4|gifv|mkv|mov|webm$/.test(data.url);
+  const videoUrl = () => {
+    const urlParts = data.url.split('.');
+    urlParts.pop();
+
+    return [...urlParts, 'mp4'].join('.');
+  };
+  const isEmbed = () => {
+    if (data.media) {
+      return data.media.type === 'youtube.com';
+    }
+    return false;
   };
 
-  const checkForVideo = (value: string): boolean => {
-    return value.toLowerCase().indexOf('youtube') >= 0;
+  // BUG: isLink does not match all link posts
+  // TODO: Handle all the edge cases, including property self hint not having an assigned value for some reddit self links
+  const isLink = () => {
+    return (
+      !isVideo() &&
+      (data.post_hint === 'link' ||
+        data.post_hint === 'self' ||
+        data.domain === 'instagram.com')
+    );
   };
 
   let preview;
-  if (checkForImage(data.url)) {
+  if (isImage()) {
     preview = <img src={data.url} alt={data.subreddit} />;
-  } else if (checkForVideo(data.url)) {
-    const res = data.url.split('=');
+  } else if (isVideo()) {
+    const url = videoUrl();
+
+    preview = (
+      <video controls muted autoPlay loop aria-label={data.title}>
+        <source type="video/mp4" src={url} />
+      </video>
+    );
+  } else if (isEmbed()) {
+    const url = getSrcFromStr(data.media_embed.content);
 
     preview = (
       <iframe
         title={data.subreddit}
-        aria-label="youtube media"
-        src={`https://www.youtube.com/embed/${res[1]}`}
+        aria-label={data.title}
+        src={url}
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         frameBorder="0"
         allowFullScreen
+      />
+    );
+  } else if (isLink()) {
+    preview = (
+      <Chip
+        label="External Link"
+        variant="outlined"
+        color="primary"
+        component="a"
+        href={data.url}
+        target="_blank"
+        clickable
       />
     );
   } else {

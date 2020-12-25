@@ -143,11 +143,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
             >
               <img
                 alt={post.title}
-                style={{
-                  backgroundImage: post.url_overridden_by_dest
-                    ? `url(${post.url_overridden_by_dest})`
-                    : 'inherit',
-                }}
+                src={post.url_overridden_by_dest}
                 className={classes.preview}
               />
             </a>

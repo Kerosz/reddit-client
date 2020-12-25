@@ -45,6 +45,8 @@ const commentsCardStyles = (theme: Theme) =>
     },
     body: {
       marginTop: theme.spacing(1),
+      wordWrap: 'break-word',
+      overflowWrap: 'break-word',
     },
     actions: {
       display: 'flex',
