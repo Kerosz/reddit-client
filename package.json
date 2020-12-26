@@ -1,6 +1,6 @@
 {
   "name": "reddit-client",
-  "homepage": "./*",
+  "homepage": ".",
   "version": "0.10.0",
   "description": "Reddit Client Redesign is the unofficial Reddit frontend app concept to tune the experience of the users and greater increase the browsing experience.",
   "author": "Andrei C.",
