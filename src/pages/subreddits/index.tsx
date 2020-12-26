@@ -1,6 +1,8 @@
 import React from 'react';
 import { Grid } from '@material-ui/core';
-import { Layout, Card } from '../../components';
+import Layout from '../../components/Layout';
+import Card from '../../components/Card';
+// import Skeleton from '../../components/Skeleton';
 import { getSubreddits } from '../../features/subreddits/subredditsSlice';
 import useFetch from '../../hooks/useFetch';
 

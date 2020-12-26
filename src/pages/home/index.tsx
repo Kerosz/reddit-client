@@ -1,25 +1,26 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Layout, Card } from '../../components';
-import { getAllPosts } from '../../features/posts/postsSlice';
+import Layout from '../../components/Layout';
+import Card from '../../components/Card';
 import Skeleton from '../../components/Skeleton';
+import { getAllPosts } from '../../features/posts/postsSlice';
 import useFetch from '../../hooks/useFetch';
 
 type ParamsProps = {
-  category: string;
+  filterBy: string;
 };
 
 const Home: React.FC = () => {
-  const { category } = useParams<ParamsProps>();
+  const { filterBy } = useParams<ParamsProps>();
 
-  const { posts } = useFetch({ action: getAllPosts, params: category });
+  const { posts } = useFetch({ action: getAllPosts, params: filterBy });
   const { posts: postsData, isLoading } = posts;
 
   if (isLoading) {
     return (
       <Layout aside sidebarProps={{ type: 'filter' }}>
-        {Array.from(new Array(6)).map(() => (
-          <Skeleton type="card" />
+        {Array.from(new Array(6)).map((_, idx) => (
+          <Skeleton type="card" key={idx} />
         ))}
       </Layout>
     );

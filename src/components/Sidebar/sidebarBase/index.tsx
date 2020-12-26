@@ -89,13 +89,15 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
         content={
           <List>
             {isLoading
-              ? Array.from(new Array(8)).map(() => <Skeleton type="sidebar" />)
+              ? Array.from(new Array(8)).map((_, idx) => (
+                  <Skeleton type="sidebar" key={idx} />
+                ))
               : subreddits.slice(1, 9).map((data: any) => (
                   <ListItem
                     component={Link}
                     button
                     key={data.id}
-                    to={`/subreddit/r/${data.display_name}`}
+                    to={`/subreddit/${data.display_name}`}
                   >
                     <ListItemAvatar>
                       <Avatar alt={data.display_name} src={data.icon_img} />

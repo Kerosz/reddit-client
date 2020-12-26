@@ -1,6 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Layout, Card } from '../../components';
+import Layout from '../../components/Layout';
+import Card from '../../components/Card';
+// import Skeleton from '../../components/Skeleton';
 import {
   getSubredditByName,
   getSubredditPosts,

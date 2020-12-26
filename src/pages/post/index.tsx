@@ -13,7 +13,8 @@ import {
 } from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import PublishIcon from '@material-ui/icons/Publish';
-import { Layout, Card } from '../../components';
+import Layout from '../../components/Layout';
+import Card from '../../components/Card';
 import Skeleton from '../../components/Skeleton';
 import { fd } from '../../helpers';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
@@ -22,7 +23,7 @@ import { getPost } from '../../features/post/postSlice';
 
 type ParamsProps = {
   id: string;
-  subreddit: string;
+  subredditName: string;
 };
 
 type TState = {
@@ -34,11 +35,11 @@ type TState = {
 };
 
 const Post: React.FC<StyleProps> = ({ classes }) => {
-  const { subreddit, id } = useParams<ParamsProps>();
+  const { subredditName, id } = useParams<ParamsProps>();
 
   const { post: postState } = useFetch({
     action: getPost,
-    params: [subreddit, id],
+    params: [subredditName, id],
   });
   const {
     data: { post, comments },
@@ -114,7 +115,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
                     post.author_flair_background_color &&
                     post.author_flair_background_color,
                 }}
-                to={`/profile/u/${post.author}`}
+                to={`/profile/${post.author}`}
               >
                 {post.author}
               </Link>

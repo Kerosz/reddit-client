@@ -71,10 +71,16 @@ const postCardStyles = (theme: Theme) =>
       '& > span': {
         fontWeight: 600,
         marginLeft: 20,
+        '&:hover': {
+          textDecoration: 'underline',
+        },
       },
       '& > p': {
         fontSize: 13,
         marginLeft: 15,
+        '& > a:hover': {
+          textDecoration: 'underline',
+        },
       },
     },
     content: {
@@ -92,7 +98,7 @@ const postCardStyles = (theme: Theme) =>
         lineHeight: 1.6,
       },
       '& h2': {
-        fontSize: 19,
+        fontSize: 17.5,
       },
     },
     actions: {

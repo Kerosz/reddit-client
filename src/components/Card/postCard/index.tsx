@@ -11,6 +11,7 @@ import postCardStyles, { StyleProps } from './postCard.styles';
 export type PostDataProps = {
   component?: React.ElementType;
   data?: {
+    id: string;
     subreddit: string;
     title: string;
     author: string;
@@ -42,7 +43,9 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
   if (!data) return null;
 
   const isImage = () => /bmp|webp|png|jpg|jpeg|gif$/.test(data.url);
-  const isVideo = () => /mp4|gifv|mkv|mov|webm$/.test(data.url);
+
+  // TODO Figure out how to make "mov" keyword not to match the "movie" subreddit in the url
+  const isVideo = () => /mp4|gifv|mkv|webm$/.test(data.url);
   const videoUrl = () => {
     const urlParts = data.url.split('.');
     urlParts.pop();
@@ -114,19 +117,17 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
           <Avatar alt={data.subreddit} src={data.thumbnail} />
 
           <span data-testid="subreddit">
-            <Link to={`/subreddit/r/${data.subreddit}`}>
-              r/{data.subreddit}
-            </Link>
+            <Link to={`/subreddit/${data.subreddit}`}>r/{data.subreddit}</Link>
           </span>
 
           <p data-testid="author">
             Posted by{' '}
-            <Link to={`/profile/u/${data.author}`}>u/{data.author}</Link>
+            <Link to={`/profile/${data.author}`}>u/{data.author}</Link>
           </p>
         </header>
         <section className={classes.content} aria-label="post body">
           <div className={classes.details}>
-            <Link to={`/post${data.permalink}`}>
+            <Link to={`/post/${data.subreddit}/comments/${data.id}`}>
               <h2 data-testid="title">{data.title}</h2>
               {data.selftext && (
                 <p data-testid="description">
