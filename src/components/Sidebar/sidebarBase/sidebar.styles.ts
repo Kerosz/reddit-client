@@ -6,6 +6,7 @@ export type StyleProps = {
     listText: string;
     ad: string;
     listItem: string;
+    activeLink: string;
     link: string;
   };
 };
@@ -35,6 +36,17 @@ const sidebarStyles = (theme: Theme) =>
     listItem: {
       fontWeight: 500,
       '&:hover': {
+        background: 'none',
+        '& .MuiTypography-root': {
+          color: theme.palette.warning.main,
+        },
+        '& .MuiListItemIcon-root > svg': {
+          color: theme.palette.warning.main,
+        },
+      },
+    },
+    activeLink: {
+      '& .MuiListItem-root': {
         background: 'none',
         '& .MuiTypography-root': {
           color: theme.palette.warning.main,

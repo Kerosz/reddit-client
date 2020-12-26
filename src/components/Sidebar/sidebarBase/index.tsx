@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import {
   withStyles,
   List,
@@ -70,7 +70,12 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
         <List aria-label="Reddit category list">
           {filterOptions.map(
             (option: Option): JSX.Element => (
-              <Link className={classes.link} to={option.path} key={option.name}>
+              <NavLink
+                className={classes.link}
+                activeClassName={classes.activeLink}
+                to={option.path}
+                key={option.name}
+              >
                 <ListItem className={classes.listItem} button>
                   <ListItemIcon>{option.icon}</ListItemIcon>
                   <ListItemText
@@ -78,7 +83,7 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
                     primary={capitalize(option.name)}
                   />
                 </ListItem>
-              </Link>
+              </NavLink>
             ),
           )}
         </List>

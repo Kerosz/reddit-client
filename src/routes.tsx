@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
 import ScrollToTop from './lib/scrollToTop';
 import Skeleton from './components/Skeleton';
 
@@ -47,7 +47,7 @@ const appRoutes: IRoutes[] = [
 const Routes = () => {
   return (
     <React.Suspense fallback={<Skeleton />}>
-      <BrowserRouter>
+      <HashRouter>
         <ScrollToTop>
           <Switch>
             {appRoutes.map(({ path, page }, idx) => (
@@ -58,9 +58,12 @@ const Routes = () => {
                 key={`${path}-${idx}`}
               />
             ))}
+            <Route path="*">
+              <Redirect to="/" />
+            </Route>
           </Switch>
         </ScrollToTop>
-      </BrowserRouter>
+      </HashRouter>
     </React.Suspense>
   );
 };
