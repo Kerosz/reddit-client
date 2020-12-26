@@ -12,12 +12,12 @@ const layoutStyles = (theme: Theme) =>
     main: {
       display: 'flex',
       flexDirection: 'row',
-      margin: '60px 0',
+      margin: '60px 0 30px',
       paddingTop: 25,
     },
     content: {
       width: '100%',
-      marginLeft: 30,
+      marginLeft: 16,
       [theme.breakpoints.down('sm')]: {
         marginLeft: 0,
       },

@@ -37,7 +37,11 @@ const footerStyles = (theme: Theme) =>
       '&:last-of-type > li': {
         marginRight: 0,
       },
-      '&:hover, &:focus': { textDecoration: 'underline' },
+      '& > a': {
+        textDecoration: 'none',
+        color: theme.palette.text.secondary,
+        '&:hover, &:focus': { textDecoration: 'underline' },
+      },
     },
   });
 

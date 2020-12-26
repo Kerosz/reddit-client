@@ -56,8 +56,6 @@ const Header: React.FC<StyleProps> = ({ classes }) => {
           <UserAvatar name="Andrei Chirila" email="andrei.chirila@gmail.com" />
           <IconButton
             aria-label="switch theme mode"
-            aria-controls="switch-appbar"
-            aria-haspopup="false"
             onClick={handleModeSwitch}
             color="inherit"
           >

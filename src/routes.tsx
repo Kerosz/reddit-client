@@ -1,5 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import ScrollToTop from './lib/scrollToTop';
+import Skeleton from './components/Skeleton';
 
 const HomePage = React.lazy(() => import('./pages/home'));
 const PostPage = React.lazy(() => import('./pages/post'));
@@ -44,8 +46,9 @@ const appRoutes: IRoutes[] = [
 
 const Routes = () => {
   return (
-    <React.Suspense fallback={<h1>Loading...</h1>}>
+    <React.Suspense fallback={<Skeleton />}>
       <BrowserRouter>
+        <ScrollToTop />
         <Switch>
           {appRoutes.map(({ path, page }, idx) => (
             <Route path={path} component={page} exact key={`${path}-${idx}`} />

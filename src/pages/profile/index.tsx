@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
-// import Skeleton from '../../components/Skeleton';
+import Skeleton from '../../components/Skeleton';
 import useFetch from '../../hooks/useFetch';
 import { getUserByName, getUserPosts } from '../../features/user/userSlice';
 
@@ -24,7 +24,9 @@ const User: React.FC = () => {
   if (isLoading) {
     return (
       <Layout aside sidebarProps={{ type: 'user' }}>
-        Loading ...
+        {Array.from(new Array(3)).map((_, idx) => (
+          <Skeleton type="card" key={idx} />
+        ))}
       </Layout>
     );
   }

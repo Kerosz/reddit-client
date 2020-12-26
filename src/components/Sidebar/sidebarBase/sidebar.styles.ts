@@ -14,8 +14,8 @@ const sidebarStyles = (theme: Theme) =>
   createStyles({
     sidebar: {
       width: '100%',
-      maxWidth: 300,
-      minWidth: 300,
+      maxWidth: 320,
+      minWidth: 320,
       backgroundColor: theme.palette.background.default,
       paddingRight: 3,
       [theme.breakpoints.down('sm')]: {

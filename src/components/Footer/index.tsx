@@ -53,23 +53,15 @@ const Footer: React.FC<Props & StyleProps> = ({ width = 'lg', classes }) => (
         {footerLinks.map(
           (item: InfoItem): JSX.Element =>
             item.target ? (
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={classes.item}
-                key={`${item.id}-${item.label}`}
-              >
-                <li>{item.label}</li>
-              </a>
+              <li key={`${item.id}-${item.label}`} className={classes.item}>
+                <a href={item.link} target="_blank" rel="noopener noreferrer">
+                  {item.label}
+                </a>
+              </li>
             ) : (
-              <a
-                href={item.link}
-                className={classes.item}
-                key={`${item.id}-${item.label}`}
-              >
-                <li>{item.label}</li>
-              </a>
+              <li key={`${item.id}-${item.label}`} className={classes.item}>
+                <a href={item.link}>{item.label}</a>
+              </li>
             ),
         )}
       </ul>

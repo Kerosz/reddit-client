@@ -103,6 +103,7 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
         component="a"
         href={data.url}
         target="_blank"
+        rel="noopener noreferrer"
         clickable
       />
     );

@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
-// import Skeleton from '../../components/Skeleton';
+import Skeleton from '../../components/Skeleton';
 import {
   getSubredditByName,
   getSubredditPosts,
@@ -27,7 +27,9 @@ const Subreddit: React.FC = () => {
   if (isLoading) {
     return (
       <Layout aside sidebarProps={{ type: 'subreddit' }}>
-        Loading...
+        {Array.from(new Array(6)).map((_, idx) => (
+          <Skeleton type="card" key={idx} />
+        ))}
       </Layout>
     );
   }
