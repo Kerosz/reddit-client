@@ -48,12 +48,18 @@ const Routes = () => {
   return (
     <React.Suspense fallback={<Skeleton />}>
       <BrowserRouter>
-        <ScrollToTop />
-        <Switch>
-          {appRoutes.map(({ path, page }, idx) => (
-            <Route path={path} component={page} exact key={`${path}-${idx}`} />
-          ))}
-        </Switch>
+        <ScrollToTop>
+          <Switch>
+            {appRoutes.map(({ path, page }, idx) => (
+              <Route
+                path={path}
+                component={page}
+                exact
+                key={`${path}-${idx}`}
+              />
+            ))}
+          </Switch>
+        </ScrollToTop>
       </BrowserRouter>
     </React.Suspense>
   );
