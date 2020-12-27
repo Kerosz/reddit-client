@@ -1,7 +1,7 @@
 {
   "name": "reddit-client",
   "homepage": ".",
-  "version": "0.10.0",
+  "version": "0.22.0",
   "description": "Reddit Client Redesign is the unofficial Reddit frontend app concept to tune the experience of the users and greater increase the browsing experience.",
   "author": "Andrei C.",
   "license": "GPL-3.0-only",
@@ -19,8 +19,8 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "@reduxjs/toolkit": "^1.2.5",
     "@testing-library/jest-dom": "^5.11.6",
+    "autosuggest-highlight": "^3.1.1",
     "dayjs": "^1.9.7",
-    "history": "^5.0.0",
     "lodash": "^4.17.20",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
@@ -28,12 +28,12 @@
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.1",
-    "remark-gfm": "^1.0.0",
-    "swr": "^0.3.9"
+    "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
     "@testing-library/react": "^11.2.2",
     "@testing-library/user-event": "^12.6.0",
+    "@types/autosuggest-highlight": "^3.1.1",
     "@types/jest": "^26.0.19",
     "@types/lodash": "^4.14.165",
     "@types/material-ui": "^0.21.8",
@@ -76,8 +76,7 @@
   "lint-staged": {
     "**/*.+{js|jsx|tx|tsx|json}": [
       "yarn lint",
-      "prettier --write",
-      "git add"
+      "prettier --write"
     ]
   },
   "husky": {

@@ -31,6 +31,9 @@ const postStyles = (theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       borderRadius: 4,
       boxShadow: `1px 1px 3px ${theme.palette.action.disabledBackground}`,
+      [theme.breakpoints.down('xs')]: {
+        padding: '12px 8px',
+      },
     },
     header: {
       display: 'flex',
@@ -115,13 +118,13 @@ const postStyles = (theme: Theme) =>
     },
     title: {
       fontWeight: 500,
-      fontSize: 24,
+      fontSize: 23,
       widht: 'inherit',
       maxWidth: '85%',
       marginTop: theme.spacing(3.5),
       [theme.breakpoints.down('xs')]: {
         maxWidth: '95%',
-        fontSize: 22,
+        fontSize: 20,
       },
     },
     underLine: {
