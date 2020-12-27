@@ -59,7 +59,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   return (
     <Layout aside>
       <article className={classes.post} aria-label="post content">
-        <Breadcrumbs aria-label="breadcrumbs" component="nav">
+        <Breadcrumbs maxItems={2} aria-label="breadcrumbs" component="nav">
           <StyledBreadcrumb
             component={Link}
             to="/"

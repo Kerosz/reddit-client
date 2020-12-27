@@ -117,14 +117,18 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
         <header className={classes.header} aria-label="post head">
           <Avatar alt={data.subreddit} src={data.thumbnail} />
 
-          <span data-testid="subreddit">
-            <Link to={`/subreddit/${data.subreddit}`}>r/{data.subreddit}</Link>
-          </span>
+          <div className={classes.info}>
+            <span data-testid="subreddit">
+              <Link to={`/subreddit/${data.subreddit}`}>
+                r/{data.subreddit}
+              </Link>
+            </span>
 
-          <p data-testid="author">
-            Posted by{' '}
-            <Link to={`/profile/${data.author}`}>u/{data.author}</Link>
-          </p>
+            <p data-testid="author">
+              Posted by{' '}
+              <Link to={`/profile/${data.author}`}>u/{data.author}</Link>
+            </p>
+          </div>
         </header>
         <section className={classes.content} aria-label="post body">
           <div className={classes.details}>

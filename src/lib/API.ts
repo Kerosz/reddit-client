@@ -14,6 +14,7 @@ enum FetchError {
   ALL_POST = 'Failed to get posts data',
   ALL_SUBREDDITS = 'Failed to get subreddits data',
   POST_WITH_COMMENTS = 'Failed to get posts with comments data',
+  SEARCH = 'No results found!',
 }
 
 const getSubreddit = async (subreddit: string, options = initialOptions) => {
@@ -177,6 +178,27 @@ const getUserPosts = async (user: string, options = initialOptions) => {
   throw new Error(json.message || FetchError.USER);
 };
 
+const getSearchResults = async (
+  params: { q: string; type: string },
+  options = initialOptions,
+) => {
+  const searchParams = new URLSearchParams(params);
+  const url = `${API_URL}/search.json?${searchParams}`;
+
+  const query = await fetch(url, options);
+  const json = await query.json();
+
+  if (query.ok) {
+    return {
+      after: json.data.after,
+      before: json.data.before,
+      search: json.data.children.map((sr: any) => sr.data),
+    };
+  }
+
+  throw new Error(json.message || FetchError.SEARCH);
+};
+
 export default {
   getSubreddit,
   getAllSubreddits,
@@ -187,4 +209,5 @@ export default {
   getUser,
   getUserPosts,
   getAllPosts,
+  getSearchResults,
 };

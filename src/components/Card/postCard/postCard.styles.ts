@@ -7,6 +7,7 @@ export type StyleProps = {
     post: string;
     avatar: string;
     header: string;
+    info: string;
     content: string;
     details: string;
     actions: string;
@@ -40,6 +41,9 @@ const postCardStyles = (theme: Theme) =>
     post: {
       width: '100%',
       padding: '16px 16px 4px',
+      [theme.breakpoints.down('xs')]: {
+        padding: '12px 8px 4px',
+      },
     },
     ratings: {
       display: 'flex',
@@ -55,9 +59,9 @@ const postCardStyles = (theme: Theme) =>
         color: theme.palette.text.secondary,
       },
       [theme.breakpoints.down('xs')]: {
-        width: 45,
+        width: 55,
         '& > h2': {
-          fontSize: 13,
+          fontSize: 14.5,
         },
       },
     },
@@ -65,6 +69,12 @@ const postCardStyles = (theme: Theme) =>
       backgroundColor: red[500],
     },
     header: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      paddingBottom: theme.spacing(1),
+    },
+    info: {
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
@@ -77,10 +87,17 @@ const postCardStyles = (theme: Theme) =>
       },
       '& > p': {
         fontSize: 13,
+        margin: 0,
         marginLeft: 15,
+        marginTop: 3,
         '& > a:hover': {
           textDecoration: 'underline',
         },
+      },
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+        '& > p': { paddingLeft: theme.spacing(0.7) },
       },
     },
     content: {
@@ -88,6 +105,9 @@ const postCardStyles = (theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       justifyContent: 'space-between',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+      },
     },
     details: {
       display: 'flex',
@@ -100,6 +120,9 @@ const postCardStyles = (theme: Theme) =>
       '& h2': {
         fontSize: 17.5,
       },
+      [theme.breakpoints.down('xs')]: {
+        '& h2': { fontSize: 16.5 },
+      },
     },
     actions: {
       marginTop: 10,
@@ -109,9 +132,13 @@ const postCardStyles = (theme: Theme) =>
     },
     preview: {
       display: 'flex',
+      alignItems: 'center',
       '& > a': {
         margin: '10px 70px',
         alignSelf: 'center',
+        [theme.breakpoints.down('xs')]: {
+          margin: '15px 4px 10px',
+        },
       },
       '& > img': {
         width: 256,
@@ -119,8 +146,9 @@ const postCardStyles = (theme: Theme) =>
         objectFit: 'cover',
         marginLeft: 10,
         [theme.breakpoints.down('xs')]: {
-          width: 144,
-          height: 81,
+          width: '100%',
+          height: '100%',
+          marginLeft: 0,
         },
       },
       '& > iframe, & > video': {
@@ -128,8 +156,8 @@ const postCardStyles = (theme: Theme) =>
         height: '144px',
         marginLeft: 10,
         [theme.breakpoints.down('xs')]: {
-          width: 144,
-          height: 81,
+          width: '100%',
+          height: '100%',
         },
       },
     },
