@@ -8,29 +8,37 @@ const BaseSkeleton: React.FC = () => {
       display="flex"
       alignItems="center"
       justifyContent="space-between"
-      p={1}
       mb={10}
+      p="0 10px"
     >
-      <Skeleton variant="circle" width={47} height={40} />
-      <Box width="54%" pl={4}>
+      <Box display="flex" alignItems="center">
+        <Skeleton variant="circle" width={41} height={39} />
+        <Skeleton
+          variant="rect"
+          width={55}
+          height={20}
+          style={{ marginLeft: 7 }}
+        />
+      </Box>
+      <Box width="69%" pl={31}>
         <Skeleton
           animation="wave"
-          height={55}
-          width="100%%"
+          height={62}
+          width="100%"
           style={{ marginBottom: 6 }}
         />
       </Box>
-      <Box display="flex" alignItems="center" p={1} width="20%">
-        <Skeleton variant="circle" width={47} height={40} />
-        <Box width="100%" pl={2}>
-          <Skeleton
-            animation="wave"
-            height={12}
-            width="70%"
-            style={{ marginBottom: 6 }}
-          />
-          <Skeleton height={12} width="90%" />
-        </Box>
+      <Box
+        display="flex"
+        flexDirection="column"
+        alignItems="flex-end"
+        pr={5}
+        width="20%"
+        justifyContent="space-around"
+      >
+        <Skeleton variant="circle" width={6} height={6} />
+        <Skeleton variant="circle" width={6} height={6} />
+        <Skeleton variant="circle" width={6} height={6} />
       </Box>
     </Box>
   );
