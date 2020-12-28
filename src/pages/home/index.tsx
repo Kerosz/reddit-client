@@ -2,6 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
+import ListWrapper from '../../components/List';
 import Skeleton from '../../components/Skeleton';
 import { getAllPosts } from '../../features/posts/postsSlice';
 import useFetch from '../../hooks/useFetch';
@@ -28,9 +29,7 @@ const Home: React.FC = () => {
 
   return (
     <Layout navigation aside sidebarProps={{ type: 'filter' }}>
-      {postsData?.map((post: any) => (
-        <Card postProps={{ data: post }} key={post.id} />
-      ))}
+      <ListWrapper data={postsData} component={Card} />
     </Layout>
   );
 };

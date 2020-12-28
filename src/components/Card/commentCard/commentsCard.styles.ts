@@ -15,7 +15,6 @@ const commentsCardStyles = (theme: Theme) =>
     root: {
       listStyle: 'none',
       borderLeft: `2px solid ${theme.palette.text.disabled}`,
-      marginBottom: theme.spacing(4.5),
       padding: '12px 8px 8px 30px',
       backgroundColor: theme.palette.action.hover,
       '&:last-of-type': {

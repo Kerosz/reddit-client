@@ -8,31 +8,32 @@ import truncate from 'lodash/truncate';
 import { copyToClipboard, fd, getSrcFromStr } from '../../../helpers';
 import postCardStyles, { StyleProps } from './postCard.styles';
 
-export type PostDataProps = {
-  component?: React.ElementType;
-  data?: {
-    id: string;
-    subreddit: string;
-    title: string;
-    author: string;
-    selftext: string;
-    domain: string;
-    media: {
-      type: string;
-    } | null;
-    media_embed: {
-      content: string;
-    };
-    secure_media_embed: {
-      media_domain_url: string;
-    };
-    thumbnail: string;
-    permalink: string;
-    post_hint: string;
-    url: string;
-    ups: number;
+export type TPostData = {
+  id: string;
+  subreddit: string;
+  title: string;
+  author: string;
+  selftext: string;
+  domain: string;
+  media: {
+    type: string;
+  } | null;
+  media_embed: {
+    content: string;
   };
+  secure_media_embed: {
+    media_domain_url: string;
+  };
+  thumbnail: string;
+  permalink: string;
+  post_hint: string;
+  url: string;
+  ups: number;
 };
+export interface PostDataProps {
+  component?: React.ElementType;
+  data?: TPostData;
+}
 
 const PostCard: React.FC<StyleProps & PostDataProps> = ({
   component: Component,

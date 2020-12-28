@@ -17,6 +17,7 @@ const layoutStyles = (theme: Theme) =>
     },
     content: {
       width: '100%',
+
       marginLeft: 16,
       [theme.breakpoints.down('sm')]: {
         marginLeft: 0,

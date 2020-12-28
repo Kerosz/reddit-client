@@ -32,7 +32,7 @@ const getSubredditPosts = async (
   subreddit: string,
   options = initialOptions,
 ) => {
-  const url = `${API_URL}/r/${subreddit}/.json`;
+  const url = `${API_URL}/r/${subreddit}/.json?limit=75`;
 
   const query = await fetch(url, options);
   const json = await query.json();
@@ -102,7 +102,7 @@ const getPostWithComments = async (
   options = initialOptions,
 ) => {
   const [subreddit, id] = post;
-  const url = `${API_URL}/r/${subreddit}/comments/${id}/.json`;
+  const url = `${API_URL}/r/${subreddit}/comments/${id}/.json?limit=75`;
 
   const query = await fetch(url, options);
 
@@ -127,9 +127,9 @@ const getAllPosts = async (
 ) => {
   let url;
   if (subreddit) {
-    url = `${API_URL}/r/${subreddit}/${params}.json`;
+    url = `${API_URL}/r/${subreddit}/${params}.json?limit=75`;
   } else {
-    url = `${API_URL}/${params}.json`;
+    url = `${API_URL}/${params}.json?limit=75`;
   }
 
   const query = await fetch(url, options);
@@ -158,7 +158,7 @@ const getUser = async (user: string, options = initialOptions) => {
 };
 
 const getUserPosts = async (user: string, options = initialOptions) => {
-  const url = `${API_URL}/user/${user}/.json`;
+  const url = `${API_URL}/user/${user}/.json?limit=75`;
 
   const query = await fetch(url, options);
   const json = await query.json();
