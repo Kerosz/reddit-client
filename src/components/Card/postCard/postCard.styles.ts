@@ -157,7 +157,8 @@ const postCardStyles = (theme: Theme) =>
         marginLeft: 10,
         [theme.breakpoints.down('xs')]: {
           width: '100%',
-          height: '100%',
+          height: '52vw',
+          marginLeft: 0,
         },
       },
     },

@@ -35,11 +35,11 @@ const FlexBox: React.FC<IBoxProps> = ({
 const PostSkeleton: React.FC = () => {
   return (
     <>
-      <FlexBox w="290px" mb={5}>
-        <Skeleton variant="rect" width={65} height={20} />
-        <Skeleton variant="rect" width={65} height={20} />
-        <Skeleton variant="rect" width={65} height={20} />
-        <Skeleton variant="rect" width={65} height={20} />
+      <FlexBox w="285px" mb={5}>
+        <Skeleton variant="rect" width={63} height={20} />
+        <Skeleton variant="rect" width={63} height={20} />
+        <Skeleton variant="rect" width={63} height={20} />
+        <Skeleton variant="rect" width={63} height={20} />
       </FlexBox>
       <FlexBox w="100%" mb={10}>
         <Box
@@ -50,16 +50,16 @@ const PostSkeleton: React.FC = () => {
           height="35px"
           justifyContent="space-between"
         >
-          <Skeleton variant="rect" width={50} height={17} />
-          <Skeleton variant="rect" width={45} height={14} />
+          <Skeleton variant="rect" width={48} height={17} />
+          <Skeleton variant="rect" width={43} height={14} />
         </Box>
         <Box width="100%">
-          <FlexBox mb={3} w="290px">
+          <FlexBox mb={3} w="250px">
             <Skeleton variant="circle">
               <Avatar />
             </Skeleton>
-            <Skeleton variant="rect" width={95} height={15} />
-            <Skeleton variant="rect" width={125} height={11} />
+            <Skeleton variant="rect" width={90} height={15} />
+            <Skeleton variant="rect" width={105} height={11} />
           </FlexBox>
           <Skeleton width="90%" height={28} />
           <Skeleton width="90%" height={28} />

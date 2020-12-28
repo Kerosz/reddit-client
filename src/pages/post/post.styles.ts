@@ -14,6 +14,7 @@ export type StyleProps = {
     info: string;
     actionVote: string;
     panel: string;
+    wrapper: string;
     title: string;
     top: string;
     divider: string;
@@ -101,6 +102,16 @@ const postStyles = (theme: Theme) =>
       display: 'flex',
       flexDirection: 'row',
       alignItems: 'center',
+      marginBottom: theme.spacing(1),
+    },
+    wrapper: {
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'center',
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+        alignItems: 'flex-start',
+      },
       '& > a': {
         color: 'inherit',
         textDecoration: 'none',
@@ -114,6 +125,9 @@ const postStyles = (theme: Theme) =>
         fontSize: 13,
         color: theme.palette.text.secondary,
         marginLeft: theme.spacing(1.3),
+        [theme.breakpoints.down('xs')]: {
+          marginLeft: theme.spacing(2.1),
+        },
       },
     },
     title: {

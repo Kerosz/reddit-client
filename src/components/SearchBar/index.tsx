@@ -74,7 +74,7 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
         option.display_name === value.display_name
       }
       loading={isLoading}
-      loadingText="We are checking, hang on..."
+      loadingText="Searching, hang on..."
       noOptionsText="We found nothing :("
       renderInput={(args) => (
         <TextField

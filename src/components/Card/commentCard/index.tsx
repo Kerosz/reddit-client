@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { withStyles, Button } from '@material-ui/core';
+import { withStyles, Button, Tooltip } from '@material-ui/core';
 import PublishIcon from '@material-ui/icons/Publish';
 import ShareIcon from '@material-ui/icons/Share';
 import commentsCardStyles, { StyleProps } from './commentsCard.styles';
@@ -26,6 +26,7 @@ const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
   classes,
   component: Component,
   data,
+  postId,
 }): React.ReactElement | null => {
   if (!Component) throw new Error('Component was not specified');
   if (!data) return null;
@@ -34,8 +35,8 @@ const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
   const formatSinceEdited = fd.getTimeFromNow(data.edited);
   const formatedUpvotes = fd.shortenLargeNumber(data.ups);
   const upvotes = data.ups > 1 ? 'upvotes' : 'upvote';
-  // TODO: needs to be updated with env variable later on
-  const clipboardUrl = `https://www.reddit.com${data.permalink}`;
+  const url = process.env.APP_URL || 'http://localhost:3000';
+  const shareUrl = `${url}/#/post/${data.subreddit}/comments/${postId}`;
 
   let authorDisplay;
   if (data.author !== '[deleted]') {
@@ -68,13 +69,15 @@ const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
         >
           {formatedUpvotes} {upvotes}
         </Button>
-        <Button
-          onClick={() => copyToClipboard(clipboardUrl)}
-          startIcon={<ShareIcon />}
-          size="small"
-        >
-          Share
-        </Button>
+        <Tooltip placement="right" title="Copy" aria-label="copy" arrow>
+          <Button
+            onClick={() => copyToClipboard(shareUrl)}
+            startIcon={<ShareIcon />}
+            size="small"
+          >
+            Share
+          </Button>
+        </Tooltip>
       </div>
     </Component>
   );
