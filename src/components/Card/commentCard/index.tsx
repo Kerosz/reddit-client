@@ -40,7 +40,11 @@ const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
 
   let authorDisplay;
   if (data.author !== '[deleted]') {
-    authorDisplay = <Link to={`/profile/u/${data.author}`}>{data.author}</Link>;
+    authorDisplay = (
+      <Link data-testid="author" to={`/profile/${data.author}`}>
+        {data.author}
+      </Link>
+    );
   } else {
     authorDisplay = <span data-testid="author">{data.author}</span>;
   }

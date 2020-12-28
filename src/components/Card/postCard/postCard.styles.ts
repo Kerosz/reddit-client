@@ -89,7 +89,6 @@ const postCardStyles = (theme: Theme) =>
         fontSize: 13,
         margin: 0,
         marginLeft: 15,
-        marginTop: 3,
         '& > a:hover': {
           textDecoration: 'underline',
         },
@@ -97,7 +96,7 @@ const postCardStyles = (theme: Theme) =>
       [theme.breakpoints.down('xs')]: {
         flexDirection: 'column',
         alignItems: 'flex-start',
-        '& > p': { paddingLeft: theme.spacing(0.7) },
+        '& > p': { paddingLeft: theme.spacing(0.7), marginTop: 3 },
       },
     },
     content: {

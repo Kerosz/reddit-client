@@ -1,8 +1,6 @@
 import React from 'react';
 import {
   withStyles,
-  createStyles,
-  Theme,
   IconButton,
   Button,
   Switch,
@@ -20,42 +18,11 @@ import GitHubIcon from '@material-ui/icons/GitHub';
 import RedditIcon from '@material-ui/icons/Reddit';
 import { useDispatch } from 'react-redux';
 import { updateMode } from '../../../features/theme/themeSlice';
+import menuStyles, { IStyleProps } from './menu.styles';
 
-interface IProps {
+interface IProps extends IStyleProps {
   theme: boolean;
-  classes: {
-    root: string;
-    paper: string;
-    button: string;
-    item: string;
-    itemTitle: string;
-  };
 }
-
-const menuStyles = (theme: Theme) =>
-  createStyles({
-    root: {
-      display: 'flex',
-    },
-    paper: {
-      width: '225px',
-      marginRight: theme.spacing(2),
-      marginTop: theme.spacing(0.5),
-    },
-    button: {
-      color: `${theme.palette.text.primary} !important`,
-    },
-    item: {
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-    itemTitle: {
-      textTransform: 'uppercase',
-      fontSize: 11,
-      fontWeight: 600,
-    },
-  });
 
 const Menu: React.FC<IProps> = ({ theme, classes }) => {
   const [open, setOpen] = React.useState<boolean>(false);

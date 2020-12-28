@@ -18,7 +18,7 @@ const Home: React.FC = () => {
 
   if (isLoading) {
     return (
-      <Layout aside sidebarProps={{ type: 'filter' }}>
+      <Layout navigation aside sidebarProps={{ type: 'filter' }}>
         {Array.from(new Array(6)).map((_, idx) => (
           <Skeleton type="card" key={idx} />
         ))}
@@ -27,7 +27,7 @@ const Home: React.FC = () => {
   }
 
   return (
-    <Layout aside sidebarProps={{ type: 'filter' }}>
+    <Layout navigation aside sidebarProps={{ type: 'filter' }}>
       {postsData?.map((post: any) => (
         <Card postProps={{ data: post }} key={post.id} />
       ))}
