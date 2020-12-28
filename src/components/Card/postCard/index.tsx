@@ -111,6 +111,9 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
     preview = null;
   }
 
+  const url = process.env.APP_URL || 'http://localhost:3000';
+  const shareUrl = `${url}/#/post/${data.subreddit}/comments/${data.id}`;
+
   return (
     <Component className={classes.root} aria-label="reddit post">
       <div className={classes.post}>
@@ -145,7 +148,7 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
                 aria-label="comments"
                 startIcon={<CommentIcon fontSize="small" />}
                 component={Link}
-                to={`/post${data.permalink}`}
+                to={`/post/${data.subreddit}/comments/${data.id}`}
               >
                 Comments
               </Button>
@@ -153,7 +156,7 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
                 aria-label="details"
                 startIcon={<LinkIcon fontSize="small" />}
                 component={Link}
-                to={`/post${data.permalink}`}
+                to={`/post/${data.subreddit}/comments/${data.id}`}
               >
                 Details
               </Button>
@@ -161,7 +164,7 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
                 <Button
                   aria-label="share"
                   startIcon={<ShareIcon fontSize="small" />}
-                  onClick={() => copyToClipboard(data.permalink)}
+                  onClick={() => copyToClipboard(shareUrl)}
                 >
                   Share
                 </Button>

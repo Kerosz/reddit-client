@@ -7,7 +7,7 @@ export type Props = {
     branding: string;
     text: string;
   };
-  theme: string;
+  theme: boolean;
 };
 
 const brandStyles = (theme: Theme) =>

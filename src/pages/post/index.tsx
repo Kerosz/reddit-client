@@ -108,20 +108,22 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           <div className={classes.top} aria-label="article head">
             <div className={classes.panel}>
               <Avatar alt={post.author} src={post.thumbnail} />
-              <Link
-                aria-label="author name"
-                style={{
-                  color:
-                    post.author_flair_background_color &&
-                    post.author_flair_background_color,
-                }}
-                to={`/profile/${post.author}`}
-              >
-                {post.author}
-              </Link>
-              <time aria-label="time posted">
-                {post?.created_utc && fd.getTimeFromNow(post.created_utc)}
-              </time>
+              <div className={classes.wrapper}>
+                <Link
+                  aria-label="author name"
+                  style={{
+                    color:
+                      post.author_flair_background_color &&
+                      post.author_flair_background_color,
+                  }}
+                  to={`/profile/${post.author}`}
+                >
+                  {post.author}
+                </Link>
+                <time aria-label="time posted">
+                  {post?.created_utc && fd.getTimeFromNow(post.created_utc)}
+                </time>
+              </div>
             </div>
             <h1 className={classes.title}>{post.title}</h1>
             <div
