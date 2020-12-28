@@ -17,8 +17,15 @@ const footerStyles = (theme: Theme) =>
         flexDirection: 'row',
         listStyle: 'none',
         paddingLeft: 0,
+        [theme.breakpoints.down('xs')]: {
+          flexDirection: 'column',
+          textAlign: 'center',
+        },
       },
       '& .MuiContainer-root': { display: 'flex', justifyContent: 'center' },
+      [theme.breakpoints.down('sm')]: {
+        padding: '6px 0 62px 0',
+      },
     },
 
     item: {
@@ -41,6 +48,17 @@ const footerStyles = (theme: Theme) =>
         textDecoration: 'none',
         color: theme.palette.text.secondary,
         '&:hover, &:focus': { textDecoration: 'underline' },
+      },
+      [theme.breakpoints.down('xs')]: {
+        flexDirection: 'column',
+        textAlign: 'center',
+        marginRight: 0,
+        borderRight: 0,
+        marginBottom: 7,
+        borderBottom: `2px solid ${theme.palette.divider}`,
+        '&:last-of-type': {
+          borderBottom: 'none',
+        },
       },
     },
   });

@@ -11,31 +11,13 @@ import {
   Avatar,
 } from '@material-ui/core';
 import capitalize from 'lodash/capitalize';
-import WhatshotIcon from '@material-ui/icons/Whatshot';
-import DescriptionIcon from '@material-ui/icons/Description';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import EqualizerIcon from '@material-ui/icons/Equalizer';
-import DynamicFeedIcon from '@material-ui/icons/DynamicFeed';
 import Panel from '../panel';
 import sidebarStyles, { StyleProps } from './sidebar.styles';
+import filterOptions, { TOption } from '../../../constants/filterOptions';
 import { fd } from '../../../helpers';
 import { getSubreddits } from '../../../features/subreddits/subredditsSlice';
 import useFetch from '../../../hooks/useFetch';
 import Skeleton from '../../Skeleton';
-
-const filterOptions: Option[] = [
-  { name: 'all', path: '/', icon: <DynamicFeedIcon /> },
-  { name: 'hot', path: '/filter/hot', icon: <WhatshotIcon /> },
-  { name: 'new', path: '/filter/new', icon: <DescriptionIcon /> },
-  { name: 'rising', path: '/filter/rising', icon: <TrendingUpIcon /> },
-  { name: 'top', path: '/filter/top', icon: <EqualizerIcon /> },
-];
-
-type Option = {
-  name: string;
-  path: string;
-  icon: JSX.Element;
-};
 
 // TODO: Change the data type from any to a more typed one
 
@@ -69,7 +51,7 @@ const SidebarBase: React.FC<Props & StyleProps> = ({
       {filter && (
         <List aria-label="Reddit category list">
           {filterOptions.map(
-            (option: Option): JSX.Element => (
+            (option: TOption): JSX.Element => (
               <NavLink
                 className={classes.link}
                 activeClassName={classes.activeLink}

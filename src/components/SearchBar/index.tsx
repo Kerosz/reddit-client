@@ -38,6 +38,8 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
     const target = event.target as HTMLInputElement;
 
     if (event.key === 'Enter') {
+      event.preventDefault();
+
       history.push(`/subreddit/${target.value}`);
     }
   };
@@ -80,6 +82,7 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
         <TextField
           {...args}
           value={term}
+          aria-label="Search field"
           onChange={({ target }) => setTerm(target.value)}
           placeholder="Search..."
           variant="outlined"

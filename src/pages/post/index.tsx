@@ -75,7 +75,7 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
           />
           <StyledBreadcrumb
             component={Link}
-            to={`/subreddit/r/${post.subreddit}`}
+            to={`/subreddit/${post.subreddit}`}
             label={post.subreddit}
             clickable
           />
