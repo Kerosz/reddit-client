@@ -3,7 +3,7 @@ import { IFetch } from '../index';
 import API from '../../lib/API';
 
 export interface IPosts extends IFetch {
-  posts: object[] | null;
+  posts: object[];
 }
 
 type TResponse = {

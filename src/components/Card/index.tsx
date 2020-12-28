@@ -1,11 +1,15 @@
 import React from 'react';
-import PostCard, { PostDataProps } from './postCard';
-import CommentCard, { CommentDataProps } from './commentCard';
-import SubredditCard, { SubredditDataProps } from './subredditCard';
+import PostCard, { PostDataProps, TPostData } from './postCard';
+import CommentCard, { CommentDataProps, TCommentData } from './commentCard';
+import SubredditCard, {
+  SubredditDataProps,
+  TSubredditData,
+} from './subredditCard';
 
 type Props = {
   component?: React.ElementType;
   type?: 'comment' | 'subreddit' | null;
+  data?: TPostData & TSubredditData & TCommentData;
   postProps?: PostDataProps | null;
   subredditProps?: SubredditDataProps | null;
   commentProps?: CommentDataProps | null;
@@ -14,19 +18,20 @@ type Props = {
 const Card: React.FC<Props> = ({
   component = 'div',
   type,
+  data,
   postProps,
   subredditProps,
   commentProps,
 }) => {
   if (type === 'subreddit') {
-    return <SubredditCard {...subredditProps} />;
+    return <SubredditCard data={data} {...subredditProps} />;
   }
 
   if (type === 'comment') {
-    return <CommentCard component={component} {...commentProps} />;
+    return <CommentCard component={component} data={data} {...commentProps} />;
   }
 
-  return <PostCard component={component} {...postProps} />;
+  return <PostCard component={component} data={data} {...postProps} />;
 };
 
 export default Card;

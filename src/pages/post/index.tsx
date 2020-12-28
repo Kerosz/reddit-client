@@ -16,6 +16,7 @@ import PublishIcon from '@material-ui/icons/Publish';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
 import Skeleton from '../../components/Skeleton';
+import ListWrapper from '../../components/List';
 import { fd } from '../../helpers';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
 import useFetch from '../../hooks/useFetch';
@@ -162,16 +163,15 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
         {comments && comments.length > 0 ? (
           <section aria-label="discussion list" className={classes.comments}>
             <h2>Discussions</h2>
-            <ul>
-              {comments.map((comment: any) => (
-                <Card
-                  component="li"
-                  type="comment"
-                  commentProps={{ data: comment, postId: post.id }}
-                  key={comment.id}
-                />
-              ))}
-            </ul>
+
+            <ListWrapper
+              data={comments}
+              component={Card}
+              rootProps={{
+                type: 'comment',
+                commentProps: { postId: post.id },
+              }}
+            />
           </section>
         ) : null}
       </article>

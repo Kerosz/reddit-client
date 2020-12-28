@@ -22,7 +22,7 @@ const Navigation: React.FC<IStyleProps> = ({ classes }) => {
       onChange={handleChange}
       className={classes.root}
     >
-      {filterOptions.map((option: TOption) => (
+      {filterOptions.map((option: TOption, idx: number) => (
         <BottomNavigationAction
           className={classes.button}
           label={capitalize(option.name)}
@@ -30,6 +30,7 @@ const Navigation: React.FC<IStyleProps> = ({ classes }) => {
           icon={option.icon}
           component={Link}
           to={option.path}
+          key={`${option.name}-${idx}`}
         />
       ))}
     </BottomNavigation>

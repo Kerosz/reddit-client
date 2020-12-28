@@ -6,21 +6,23 @@ import ShareIcon from '@material-ui/icons/Share';
 import commentsCardStyles, { StyleProps } from './commentsCard.styles';
 import { fd, copyToClipboard } from '../../../helpers';
 
-export type CommentDataProps = {
-  component?: React.ElementType;
-  data?: {
-    id: string;
-    author: string;
-    body: string;
-    body_html: string;
-    created_utc: number;
-    edited: number;
-    permalink: string;
-    ups: number;
-    subreddit: string;
-  };
-  postId?: string;
+export type TCommentData = {
+  id: string;
+  author: string;
+  body: string;
+  body_html: string;
+  created_utc: number;
+  edited: number;
+  permalink: string;
+  ups: number;
+  subreddit: string;
 };
+
+export interface CommentDataProps {
+  component?: React.ElementType;
+  data?: TCommentData;
+  postId?: string;
+}
 
 const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
   classes,

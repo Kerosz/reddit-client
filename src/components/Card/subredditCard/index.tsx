@@ -16,22 +16,24 @@ import ReplyAllIcon from '@material-ui/icons/ReplyAll';
 import subredditCardStyles, { StyleProps } from './subredditCard.styles';
 import { fd } from '../../../helpers';
 
+export type TSubredditData = {
+  title: string;
+  display_name: string;
+  display_name_prefixed: string;
+  primary_color: string;
+  key_color: string;
+  description: string;
+  public_description: string;
+  subscribers: string;
+  header_title: string;
+  banner_img: string;
+  icon_img: string;
+  url: string;
+  created_utc: number;
+};
+
 export type SubredditDataProps = {
-  data?: {
-    title: string;
-    display_name: string;
-    display_name_prefixed: string;
-    primary_color: string;
-    key_color: string;
-    description: string;
-    public_description: string;
-    subscribers: string;
-    header_title: string;
-    banner_img: string;
-    icon_img: string;
-    url: string;
-    created_utc: number;
-  };
+  data?: TSubredditData;
 };
 
 const SubredditCard: React.FC<StyleProps & SubredditDataProps> = ({
