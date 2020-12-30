@@ -1,7 +1,5 @@
 const API_URL = process.env.REACT_APP_API_URL || 'https://www.reddit.com';
 
-// https://snowy-salad-2e3a.kerosz.workers.dev/?
-
 const initialOptions = {
   headers: {
     accept: 'application/json',

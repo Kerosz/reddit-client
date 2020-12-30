@@ -5,6 +5,7 @@
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import * as serviceWorkerRegistration from './serviceWorkerRegistration';
 
 const render = () => {
   const App = require('./app').default;
@@ -21,3 +22,5 @@ render();
 if (process.env.NODE_ENV === 'development' && module.hot) {
   module.hot.accept('./app', render);
 }
+
+serviceWorkerRegistration.register();

@@ -37,7 +37,7 @@ const CommentCard: React.FC<CommentDataProps & StyleProps> = ({
   const formatSinceEdited = fd.getTimeFromNow(data.edited);
   const formatedUpvotes = fd.shortenLargeNumber(data.ups);
   const upvotes = data.ups > 1 ? 'upvotes' : 'upvote';
-  const url = process.env.APP_URL || 'http://localhost:3000';
+  const url = process.env.PUBLIC_URL || 'http://localhost:3000';
   const shareUrl = `${url}/#/post/${data.subreddit}/comments/${postId}`;
 
   let authorDisplay;
