@@ -112,7 +112,7 @@ const PostCard: React.FC<StyleProps & PostDataProps> = ({
     preview = null;
   }
 
-  const url = process.env.PUBLIC_URL || 'http://localhost:3000';
+  const url = process.env.REACT_APP_VERCEL_URL || 'http://localhost:3000';
   const shareUrl = `${url}/#/post/${data.subreddit}/comments/${data.id}`;
 
   return (
