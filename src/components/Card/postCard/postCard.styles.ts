@@ -27,6 +27,7 @@ const postCardStyles = (theme: Theme) =>
       backgroundColor: theme.palette.background.paper,
       border: `1px solid ${fade(theme.palette.action.disabled, 0.16)}`,
       borderRadius: 2,
+      marginBottom: 10,
       transition: 'all 150ms',
       '& a': {
         color: 'inherit',

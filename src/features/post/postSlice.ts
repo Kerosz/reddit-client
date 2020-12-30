@@ -58,11 +58,11 @@ const postSlice = createSlice({
       state.page.after = payload.after;
       state.page.before = payload.before;
     },
-    [String(getPost.rejected)]: (state, { payload }: PayloadAction<string>) => {
+    [String(getPost.rejected)]: (state, action) => {
       state.status = 'failed';
       state.isError = true;
       state.isLoading = false;
-      state.error = payload;
+      state.error = action.error.message;
     },
   },
 });

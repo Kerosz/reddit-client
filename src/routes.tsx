@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter, Switch, Route, Redirect } from 'react-router-dom';
+import { HashRouter, Switch, Route } from 'react-router-dom';
 import ScrollToTop from './lib/scrollToTop';
 import Skeleton from './components/Skeleton';
 
@@ -8,6 +8,7 @@ const PostPage = React.lazy(() => import('./pages/post'));
 const SubredditPage = React.lazy(() => import('./pages/subreddit'));
 const SubredditsPage = React.lazy(() => import('./pages/subreddits'));
 const ProfilePage = React.lazy(() => import('./pages/profile'));
+const NoMatchPage = React.lazy(() => import('./pages/404'));
 
 interface IRoutes {
   path: string;
@@ -59,7 +60,7 @@ const Routes = () => {
               />
             ))}
             <Route path="*">
-              <Redirect to="/" />
+              <NoMatchPage />
             </Route>
           </Switch>
         </ScrollToTop>

@@ -11,12 +11,12 @@ import {
   Breadcrumbs,
   Button,
 } from '@material-ui/core';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import HomeIcon from '@material-ui/icons/Home';
 import PublishIcon from '@material-ui/icons/Publish';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
 import Skeleton from '../../components/Skeleton';
-import ListWrapper from '../../components/List';
 import { fd } from '../../helpers';
 import postStyles, { StyledBreadcrumb, StyleProps } from './post.styles';
 import useFetch from '../../hooks/useFetch';
@@ -33,6 +33,8 @@ type TState = {
     comments: any;
   };
   isLoading: boolean;
+  isError: boolean;
+  error: string | null;
 };
 
 const Post: React.FC<StyleProps> = ({ classes }) => {
@@ -45,7 +47,20 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
   const {
     data: { post, comments },
     isLoading,
+    isError,
+    error,
   }: TState = postState;
+
+  if (isError) {
+    return (
+      <Layout navigation aside sidebarProps={{ type: 'filter' }}>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          There was an error with your request — <strong>{error}</strong>
+        </Alert>
+      </Layout>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -163,15 +178,16 @@ const Post: React.FC<StyleProps> = ({ classes }) => {
         {comments && comments.length > 0 ? (
           <section aria-label="discussion list" className={classes.comments}>
             <h2>Discussions</h2>
-
-            <ListWrapper
-              data={comments}
-              component={Card}
-              rootProps={{
-                type: 'comment',
-                commentProps: { postId: post.id },
-              }}
-            />
+            <ul>
+              {comments.map((comment: any) => (
+                <Card
+                  component="li"
+                  type="comment"
+                  commentProps={{ data: comment, postId: post.id }}
+                  key={comment.id}
+                />
+              ))}
+            </ul>
           </section>
         ) : null}
       </article>

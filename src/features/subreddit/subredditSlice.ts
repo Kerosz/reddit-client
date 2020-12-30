@@ -60,14 +60,11 @@ const subredditSlice = createSlice({
       state.isLoading = false;
       state.info = payload;
     },
-    [String(getSubredditByName.rejected)]: (
-      state,
-      { payload }: PayloadAction<string>,
-    ) => {
+    [String(getSubredditByName.rejected)]: (state, action) => {
       state.status = 'failed';
       state.isError = true;
       state.isLoading = false;
-      state.error = payload;
+      state.error = action.error.message;
     },
     [String(getSubredditPosts.pending)]: (state) => {
       state.status = 'pending';
@@ -84,14 +81,11 @@ const subredditSlice = createSlice({
       state.page.after = payload.after;
       state.page.before = payload.before;
     },
-    [String(getSubredditPosts.rejected)]: (
-      state,
-      { payload }: PayloadAction<string>,
-    ) => {
+    [String(getSubredditPosts.rejected)]: (state, action) => {
       state.status = 'failed';
       state.isError = true;
       state.isLoading = false;
-      state.error = payload;
+      state.error = action.error.message;
     },
   },
 });

@@ -1,5 +1,7 @@
 const API_URL = process.env.API_URL || 'https://www.reddit.com';
 
+// https://snowy-salad-2e3a.kerosz.workers.dev/?
+
 const initialOptions = {
   headers: {
     accept: 'application/json',
@@ -32,7 +34,7 @@ const getSubredditPosts = async (
   subreddit: string,
   options = initialOptions,
 ) => {
-  const url = `${API_URL}/r/${subreddit}/.json?limit=75`;
+  const url = `${API_URL}/r/${subreddit}/.json`;
 
   const query = await fetch(url, options);
   const json = await query.json();
@@ -102,7 +104,7 @@ const getPostWithComments = async (
   options = initialOptions,
 ) => {
   const [subreddit, id] = post;
-  const url = `${API_URL}/r/${subreddit}/comments/${id}/.json?limit=75`;
+  const url = `${API_URL}/r/${subreddit}/comments/${id}/.json`;
 
   const query = await fetch(url, options);
 
@@ -127,9 +129,9 @@ const getAllPosts = async (
 ) => {
   let url;
   if (subreddit) {
-    url = `${API_URL}/r/${subreddit}/${params}.json?limit=75`;
+    url = `${API_URL}/r/${subreddit}/${params}.json`;
   } else {
-    url = `${API_URL}/${params}.json?limit=75`;
+    url = `${API_URL}/${params}.json`;
   }
 
   const query = await fetch(url, options);
@@ -158,7 +160,7 @@ const getUser = async (user: string, options = initialOptions) => {
 };
 
 const getUserPosts = async (user: string, options = initialOptions) => {
-  const url = `${API_URL}/user/${user}/.json?limit=75`;
+  const url = `${API_URL}/user/${user}/.json`;
 
   const query = await fetch(url, options);
   const json = await query.json();

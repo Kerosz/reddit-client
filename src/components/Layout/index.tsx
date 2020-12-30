@@ -10,7 +10,7 @@ import Sidebar, { TProps as SidebarProps } from '../Sidebar';
 
 type Props = {
   children: React.ReactNode;
-  width?: 'lg' | 'xs' | 'sm' | 'md' | 'xl' | undefined;
+  width?: 'lg' | 'xs' | 'sm' | 'md' | 'xl';
   aside?: true | false;
   navigation?: true | false;
   sidebarProps?: SidebarProps;
@@ -29,7 +29,7 @@ const Layout: React.FC<Props & StyleProps> = ({
     <Container maxWidth={width}>
       <main className={classes.main}>
         {aside && <Sidebar {...sidebarProps} />}
-        <div className={classes.content}>{children}</div>
+        <section className={classes.content}>{children}</section>
       </main>
     </Container>
     {navigation && <Navigation />}

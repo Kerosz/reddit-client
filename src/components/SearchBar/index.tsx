@@ -1,3 +1,4 @@
+/* eslint-disable consistent-return */
 import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { withStyles, CircularProgress, TextField } from '@material-ui/core';
@@ -56,7 +57,9 @@ const SearchBar: React.FC<StyleProps> = ({ classes }) => {
 
     if (term.length > 3) {
       // TODO: debounce doesn't work for some reason, still investigating
-      setTimeout(() => loadSearchData(), 1000);
+      const load = setTimeout(() => loadSearchData(), 1000);
+
+      return () => clearTimeout(load);
     }
   }, [term]);
 

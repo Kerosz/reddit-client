@@ -1,5 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
 import Skeleton from '../../components/Skeleton';
@@ -18,8 +19,19 @@ const User: React.FC = () => {
   } = useFetch({ action: getUserByName, params: userName });
 
   const {
-    user: { data, isLoading },
+    user: { data, isLoading, isError, error },
   } = useFetch({ action: getUserPosts, params: userName });
+
+  if (isError) {
+    return (
+      <Layout navigation aside sidebarProps={{ type: 'filter' }}>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          There was an error with your request — <strong>{error}</strong>
+        </Alert>
+      </Layout>
+    );
+  }
 
   if (isLoading) {
     return (

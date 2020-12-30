@@ -17,6 +17,7 @@ const commentsCardStyles = (theme: Theme) =>
       borderLeft: `2px solid ${theme.palette.text.disabled}`,
       padding: '12px 8px 8px 30px',
       backgroundColor: theme.palette.action.hover,
+      marginBottom: 18,
       '&:last-of-type': {
         marginBottom: theme.spacing(0),
       },

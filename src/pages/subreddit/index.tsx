@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import Layout from '../../components/Layout';
 import Card from '../../components/Card';
-import ListWrapper from '../../components/List';
 import Skeleton from '../../components/Skeleton';
 import {
   getSubredditByName,
@@ -22,8 +22,19 @@ const Subreddit: React.FC = () => {
   } = useFetch({ action: getSubredditByName, params: subredditName });
 
   const {
-    subreddit: { posts, isLoading },
+    subreddit: { posts, isLoading, isError, error },
   } = useFetch({ action: getSubredditPosts, params: subredditName });
+
+  if (isError) {
+    return (
+      <Layout aside sidebarProps={{ type: 'filter' }}>
+        <Alert severity="error">
+          <AlertTitle>Error</AlertTitle>
+          There was an error with your request — <strong>{error}</strong>
+        </Alert>
+      </Layout>
+    );
+  }
 
   if (isLoading) {
     return (
@@ -37,7 +48,9 @@ const Subreddit: React.FC = () => {
 
   return (
     <Layout aside sidebarProps={{ type: 'subreddit', data: info }}>
-      <ListWrapper data={posts} component={Card} />
+      {posts.map((post: any) => (
+        <Card postProps={{ data: post }} key={post.id} />
+      ))}
     </Layout>
   );
 };

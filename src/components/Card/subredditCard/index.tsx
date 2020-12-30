@@ -61,7 +61,7 @@ const SubredditCard: React.FC<StyleProps & SubredditDataProps> = ({
         title={data.display_name_prefixed}
         subheader={`a community for ${timeSinceCreated}`}
         component={Link}
-        to={`/subreddit${data.url}`}
+        to={`/subreddit/${data.display_name}`}
         className={classes.header}
       />
       <CardMedia
@@ -69,7 +69,7 @@ const SubredditCard: React.FC<StyleProps & SubredditDataProps> = ({
         image={headerPreview}
         title={data.title}
         component={Link}
-        to={`/subreddit${data.url}`}
+        to={`/subreddit/${data.display_name}`}
       />
       <CardContent>
         <Chip
@@ -91,7 +91,7 @@ const SubredditCard: React.FC<StyleProps & SubredditDataProps> = ({
           aria-label="browse subreddit"
           startIcon={<ReplyAllIcon />}
           component={Link}
-          to={`/subreddit${data.url}`}
+          to={`/subreddit/${data.display_name}`}
         >
           Browse subreddit
         </Button>
