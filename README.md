@@ -58,9 +58,11 @@ reddit-client/
 
 reddit-client/src
 ├── components     # Reusabble parts
+├── constants      # Static/non-changing data
 ├── features       # Redux slices
 ├── helpers        # Utilify functions
 ├── hooks          # Custom hooks
+├── lib            # Outside app utilities
 ├── pages          # Application views
 ├── store          # Redux store configuration
 └── theme          # Material UI theme configuration
