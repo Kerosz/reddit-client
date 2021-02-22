@@ -162,7 +162,7 @@ const Menu: React.FC<IProps> = ({ theme, classes }) => {
                     <MenuItem
                       className={classes.item}
                       component="a"
-                      href="https://github.com/Kerosz"
+                      href="https://www.reddit.com/"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
