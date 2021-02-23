@@ -1,0 +1,65 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true,
+    "jest": true
+  },
+  "extends": [
+    "airbnb-typescript",
+    "prettier",
+    "prettier/@typescript-eslint",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module",
+    "project": "./tsconfig.json"
+  },
+  "plugins": [
+    "react",
+    "@typescript-eslint",
+    "prettier",
+    "import",
+    "react-hooks",
+    "jsx-a11y"
+  ],
+  "rules": {
+    "@typescript-eslint/ban-types": 0,
+    "@typescript-eslint/no-unused-vars": 0,
+    "@typescript-eslint/no-explicit-any": 0,
+    "@typescript-eslint/explicit-module-boundary-types": 0,
+    "no-console": ["warn", { "allow": ["warn", "error"] }],
+    "no-unused-vars": 1,
+    "no-useless-escape": 1,
+    "no-fallthrough": 1,
+    "no-extra-boolean-cast": 1,
+    "no-param-reassign": 0,
+    "react/react-in-jsx-scope": 0,
+    "react/no-find-dom-node": 1,
+    "react/no-unescaped-entities": "warn",
+    "react/no-string-refs": "warn",
+    "react/jsx-no-target-blank": "warn",
+    "react/jsx-props-no-spreading": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "react/jsx-wrap-multilines": 0,
+    "react/no-array-index-key": 0,
+    "react/jsx-indent": 0,
+    "react/jsx-curly-newline": 0,
+    "react/prop-types": 0,
+    "import/extensions": 0,
+    "import/prefer-default-export": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {}
+    },
+    "react": {
+      "version": "detect"
+    }
+  }
+}
